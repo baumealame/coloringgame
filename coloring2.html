@@ -3,25 +3,130 @@
   <head>
     <title>SVG 이미지 칠하기</title>
     <style>
-        body{background-color:#f3f2ea}
+        
+ @font-face {
+    font-family: 'Ortankhangeultext';
+    src: url('https://uploads-ssl.webflow.com/64520b917dd4e006c8db2106/6480ab5bf617bb88f9d9ace8_OrtankHangeulText-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ortankhangeultext';
+    src: url('https://uploads-ssl.webflow.com/64520b917dd4e006c8db2106/6480ab8084451636a5964c5f_OrtankHangeulText-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ortankhangeultext';
+    src: url('https://uploads-ssl.webflow.com/64520b917dd4e006c8db2106/6480ab2694e636357948837e_OrtankHangeulText-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+body {
+  background-color: #f3f2ea;
+  font-family: 'Ortankhangeultext', sans-serif;
+  font-weight: 400;
+  color: #584c43;
+margin:0;padding:0}
+        
+        
       #svg-container {
         position: relative;
+          width:600px;
+          margin:0 auto;
       }
+        
+   .btn_small {
+    float: left;
+    cursor: pointer;
+    border: 1px solid #584c43;
+    border-radius: 20px;
+    margin-bottom: 0;
+    margin-right: 0;
+    padding: 4px 9px;
+    font-size: 13px;
+    line-height: 16px;
+    display: inline-block;
+    position: relative;
+    background-color:#f3f2ea;
+    font-family: 'Ortankhangeultext', sans-serif;
+    color: #584c43;
+}
 
-        .control-panel {margin-bottom:20px}
+.btn_small:hover {
+    outline-offset: -2px;
+    color: #7c7067;
+    border-width: 2px;
+    border-color: #7c7067;
+    outline: 3px #7c7067;
+    padding: 3px 9px
+}
+        
+      .control-panel {margin:20px auto;width:300px}
         
       #color-picker {
         position: relative;
       }
-        .color-palette{position:relative}
+        
+      /* 컬러 피커 스타일 수정 */
+input[type="color"] {
+  /* 원하는 스타일 속성을 추가/수정 */
+  width: 25px;
+  height: 25px;
+  border-radius:12px;padding:0;margin:0;
+  border: 1px solid rgba(88, 76, 67, 0.7);
+    cursor: pointer;
+  /* 기타 스타일 속성 */
+}
+        
+
+
+/* 컬러 피커 아이콘 스타일 수정 (모든 브라우저에 일관적으로 적용되지 않을 수 있음) */
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 12px
+}
+
+input[type="color"]::-moz-color-swatch {
+  border: none;
+  border-radius:12px;
+}
+
+input[type="color"]::-moz-focus-inner {
+  border: 0;
+}
+
+        
+        input[type="color"]::before {
+            content: "＋";
+    color: RGBa(88, 76, 67, 0.7);
+    margin-left: -1px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-weight: 300;
+    font-size: 29px;
+    line-height: 24px;
+    font-family: 'Ortankhangeultext';}      
+        
+      #color-palette{position:relative;max-width:600px;}
         
       .color-swatch {
         display: inline-block;
-        width: 20px;
-        height: 20px;
-        margin-right: 5px;
+        width: 25px;height:25px;
+        border-radius:50%;margin:0;
         cursor: pointer;
-        border: 1px solid #ccc;
+        border: 1px solid rgba(88, 76, 67, 0.4);
+          box-sizing:border-box;
       }
 
       #reset-button {
@@ -37,21 +142,84 @@
 <script src="https://cdn.jsdelivr.net/npm/pickr-widget/dist/pickr.min.js"></script>
       
       <div class="control-panel">
-        <input type="color" id="color-picker" value="#A4BBEA"/>
-        <!--<div id="color-palette">
-        <div class="color-swatch" style="background-color: #000000;"></div>
-        <div class="color-swatch" style="background-color: #f3f2ea;"></div>
-        <div class="color-swatch" style="background-color: #ff0000;"></div>
-        <div class="color-swatch" style="background-color: #00ff00;"></div>
-        <div class="color-swatch" style="background-color: #0000ff;"></div>
-        <div class="color-swatch" style="background-color: #ffff00;"></div>
-        <div class="color-swatch" style="background-color: #ff00ff;"></div>
-        <div class="color-swatch" style="background-color: #00ffff;"></div>
-        <div class="color-swatch" style="background-color: #ff8000;"></div>
-        <div class="color-swatch" style="background-color: #8000ff;"></div>
-      </div>-->
-      <button id="reset-button">모두 지우기</button>
-      <button id="save-button">이미지 저장하기</button>
+        <div id="color-palette">
+        <div class="color-swatch" style="background-color: #db584b;"></div>
+        <div class="color-swatch" style="background-color: #db854b;"></div>
+        <div class="color-swatch" style="background-color: #e2b150;"></div>
+        <div class="color-swatch" style="background-color: #8dc64a;"></div>
+        <div class="color-swatch" style="background-color: #5dc15d;"></div>
+        <div class="color-swatch" style="background-color: #42ce84;"></div>
+        <div class="color-swatch" style="background-color: #3299cc;"></div>
+        <div class="color-swatch" style="background-color: #3e7ecc;"></div>
+        <div class="color-swatch" style="background-color: #6e6edb;"></div>
+        <div class="color-swatch" style="background-color: #c660cc;"></div>
+            
+        <div class="color-swatch" style="background-color: #ff8a73;"></div>
+        <div class="color-swatch" style="background-color: #ffa76c;"></div>
+        <div class="color-swatch" style="background-color: #ffd770;"></div>
+        <div class="color-swatch" style="background-color: #c2ef73;"></div>
+        <div class="color-swatch" style="background-color: #6bdd75;"></div>
+        <div class="color-swatch" style="background-color: #6fe2ab;"></div>
+        <div class="color-swatch" style="background-color: #64bdf4;"></div>
+        <div class="color-swatch" style="background-color: #6490ff;"></div>
+        <div class="color-swatch" style="background-color: #9784f4;"></div>
+        <div class="color-swatch" style="background-color: #ef7ef2;"></div>
+            
+        <div class="color-swatch" style="background-color: #e59588;"></div>
+        <div class="color-swatch" style="background-color: #e5ab83;"></div>
+        <div class="color-swatch" style="background-color: #e0c080;"></div>
+        <div class="color-swatch" style="background-color: #add388;"></div>
+        <div class="color-swatch" style="background-color: #87cc87;"></div>
+        <div class="color-swatch" style="background-color: #81ccaa;"></div>
+        <div class="color-swatch" style="background-color: #79b5cc;"></div>
+        <div class="color-swatch" style="background-color: #7ea1e0;"></div>
+        <div class="color-swatch" style="background-color: #9f94d6;"></div>
+        <div class="color-swatch" style="background-color: #ca87cc;"></div>
+            
+            
+            
+        <div class="color-swatch" style="background-color: #fcb7a7;"></div>
+        <div class="color-swatch" style="background-color: #f7caa9;"></div>
+        <div class="color-swatch" style="background-color: #fcdd9a;"></div>
+        <div class="color-swatch" style="background-color: #c8f291;"></div>
+        <div class="color-swatch" style="background-color: #9aed9e;"></div>
+        <div class="color-swatch" style="background-color: #9aedca;"></div>
+        <div class="color-swatch" style="background-color: #9ee0ef;"></div>
+        <div class="color-swatch" style="background-color: #a4c9ff;"></div>
+        <div class="color-swatch" style="background-color: #bbb2f7;"></div>
+        <div class="color-swatch" style="background-color: #eda6ed;"></div>
+            
+        <div class="color-swatch" style="background-color: #f4e5d4;"></div>
+        <div class="color-swatch" style="background-color: #edd6c5;"></div>
+        <div class="color-swatch" style="background-color: #e5c5b3;"></div>
+        <div class="color-swatch" style="background-color: #d3aa8c;"></div>
+        <div class="color-swatch" style="background-color: #a0806a;"></div>
+        <div class="color-swatch" style="background-color: #f4ebd4;"></div>
+        <div class="color-swatch" style="background-color: #ead9bb;"></div>
+        <div class="color-swatch" style="background-color: #e8d3aa;"></div>
+        <div class="color-swatch" style="background-color: #ceb084;"></div>
+        <div class="color-swatch" style="background-color: #968060;"></div>
+            
+            
+        <div class="color-swatch" style="background-color: #cad8d4;"></div>
+        <div class="color-swatch" style="background-color: #a4bcb5;"></div>
+        <div class="color-swatch" style="background-color: #84a09a;"></div>
+        <div class="color-swatch" style="background-color: #6c8782;"></div>
+        <div class="color-swatch" style="background-color: #607f7b;"></div>
+        <div class="color-swatch" style="background-color: #cdd1d3;"></div>
+        <div class="color-swatch" style="background-color: #a7b1b7;"></div>
+        <div class="color-swatch" style="background-color: #86929b;"></div>
+        <div class="color-swatch" style="background-color: #718189;"></div>
+        <div class="color-swatch" style="background-color: #5c6a77;"></div>
+                  
+      </div>
+          
+          
+          
+          
+      <input type="color" id="color-picker" value="#f3f2ea"/>
+      <button id="reset-button" class="btn_small">모두 지우기</button>
+      <button id="save-button" class="btn_small">이미지 저장하기</button>
           
           
           </div>
@@ -60,11 +228,12 @@
 
           <defs><style>
               .cls-1,.still-stroke{fill:none;}
+              .bg-block {fill:#f3f2ea}
               .still-filled{fill:#584c43;}
               .still-stroke,.fill-block{stroke:#584c43;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}
               .fill-block{stroke-width:2px;stroke:#584c43;}
               .fill-block{stroke-miterlimit:10;}</style></defs>
-          
+          <rect class="bg-block" width="600" height="750"/>
           <path class="fill-block" d="m1,1v598h598V1H1Zm157.96,217.9l-1.37,2.54H44.9l-3.35-4.69c-3.56-4.98-4.33-11.44-2.04-17.12l8.5-21.02c2.09-5.18,6.48-9.08,11.87-10.56l11.16-3.05c5.82-1.59,12.04-.15,16.56,3.84l9.23,8.14c5.47,4.82,13.31,5.85,19.84,2.59h0c6.24-3.11,13.71-2.32,19.16,2.02l18.55,14.81c6.77,5.4,8.7,14.88,4.58,22.5Zm401.07-102.28l-2.01,3.5c-2.74,4.77-7.83,7.7-13.33,7.7h-115.54c-5.95,0-11.36-3.43-13.9-8.81l-7.57-16.01c-4.96-10.49-3.88-22.84,2.83-32.31l3.52-4.98c7.02-9.92,19.04-15.02,31.05-13.19l1.69.26c10.32,1.57,20.77-1.97,28-9.5h0c11.05-11.5,28.86-13.16,41.84-3.89l26.29,18.77c4.36,3.11,7.87,7.26,10.22,12.08l7.93,16.28c4.67,9.59,4.28,20.87-1.04,30.11Z"/><path class="fill-block" d="m39.51,199.63l8.5-21.02c2.09-5.18,6.48-9.08,11.87-10.56l11.16-3.05c5.81-1.59,12.04-.15,16.56,3.84l9.23,8.14c5.47,4.82,13.31,5.85,19.84,2.59h0c6.24-3.11,13.71-2.32,19.16,2.03l18.55,14.81c6.77,5.4,8.7,14.88,4.58,22.5l-1.37,2.54H44.9s-3.35-4.69-3.35-4.69c-3.56-4.98-4.33-11.44-2.04-17.12Z"/><path class="fill-block" d="m544.69,127.83h-115.54c-5.95,0-11.36-3.43-13.9-8.81l-7.57-16.01c-4.96-10.49-3.88-22.84,2.83-32.31l3.52-4.98c7.02-9.92,19.04-15.02,31.05-13.19l1.69.26c10.32,1.57,20.77-1.97,28-9.5h0c11.05-11.5,28.86-13.16,41.84-3.89l26.29,18.77c4.36,3.11,7.87,7.26,10.22,12.08l7.93,16.28c4.67,9.59,4.28,20.87-1.04,30.11l-2.01,3.5c-2.74,4.77-7.83,7.7-13.33,7.7Z"/><path class="fill-block" d="m301.06,283.17c1.48,0,2.68-1.2,2.68-2.68s-1.2-2.68-2.68-2.68-2.68,1.2-2.68,2.68,1.2,2.68,2.68,2.68Z"/><path class="fill-block" d="m366.36,308.29c-.19-4.3-2.06-8.36-5.2-11.3l-16.3-15.28h0l-.14,1.24c.03-.22.05-.43.07-.6-.05.42-.09.78-.13,1.11l-.23,2s0,.02,0,.03l-.62,5.3-2.58,22.13,4.64,22.25c7.11-3.18,14.16-6.52,21.28-9.54l-.78-17.32Zm-21.89-23.29c.02-.19.05-.43.08-.71-.03.26-.06.5-.08.71Z"/><path class="fill-block" d="m200.08,96.29c-.28.29-.47.6-.58.94.11-.34.29-.65.58-.94Z"/><path class="fill-block" d="m202.95,91.2c.07.24.14.48.2.71-.05-.18-.1-.36-.16-.54-.02-.05-.03-.11-.05-.16Z"/><path class="fill-block" d="m203.88,94.45c-.13-.46-.28-.97-.43-1.51.15.54.3,1.05.43,1.51Z"/><path class="fill-block" d="m375.54,364.47s-.1.02-.15.03c.05,0,.09-.02.14-.02,0,0,0,0,0,0Z"/><path class="fill-block" d="m503.92,339.51c-33.21-2.37-63.09-24.98-96.38-24.23-4.69.11-9.28.68-13.8,1.59v36.38c0,1.03-.84,1.87-1.87,1.87,0,0,1.41,4.41,2.45,8.74,7.34-1.98,14.77-3.35,22.32-3.77,40.28-2.21,83.26,26.77,126.39,25.73,18.47-.44,37.11-7.11,55.98-14.25v-55.91c-31.9,8.7-62.26,26.19-95.08,23.85Z"/><path class="fill-block" d="m354.81,378.07c.78-1.01,1.58-1.97,2.41-2.88,2.49-2.73,5.22-5,8.16-6.79.54-.33,1.08-.63,1.62-.92.2-.1.39-.2.59-.3.35-.18.7-.34,1.05-.51.24-.11.48-.22.72-.32.32-.14.65-.27.97-.39.24-.09.48-.19.72-.28,0,0,0,0,0,0-.42-3.05-.8-6.83-.8-10.55-1,0-1.82-.79-1.87-1.79l-1.25-27.72c-7.11,3.02-14.17,6.37-21.28,9.54l9.13,43.82h0l-.19-.92Z"/><path class="fill-block" d="m165.86,385.07c25.72-4.05,54.26,5.59,83.32,11.37l1.47-11.55-1.84-.54,5.68-36.89c-10.33-2.06-20.44-5.27-30.03-9.63-28.28-12.86-66.5-9.15-95.73,1.35-29.23,10.51-48.95,32.67-77.78,44.22-19.25,7.71-35.33,10.66-49.95,12.03v49.42c16.07-.03,32.47-.85,48.29-4.94,37.25-9.63,72.12-47.84,116.57-54.83Z"/><path class="fill-block" d="m393.28,367s-.09-.05-.13-.07c.04.02.09.05.13.07,0,0,0,0,0,0Z"/><polygon class="fill-block" points="355 378.98 355 378.98 355.38 380.81 355 378.98"/><path class="fill-block" d="m543.02,385.83c-43.13,1.04-86.11-27.94-126.39-25.73-7.56.41-14.99,1.79-22.32,3.77.34,1.44.65,2.86.85,4.12-.03-.02-.06-.03-.08-.04.03.01.06.03.08.04.08.04.16.09.23.13.51.05,1.01.12,1.51.19.05,0,.1.02.15.03.44.07.87.15,1.3.24.08.02.16.03.24.05.43.09.85.2,1.27.31.05.01.09.02.14.04,6.44,1.79,11.9,5.93,15.4,11.45,0,0,.01.02.02.03,7.92,11.77,15.75,25.04,15.75,64.51s-.04,44.5-2.12,56.57c-2.3,13.27-13.7,22.2-28.67,22.2s-32.84-4.93-38.62-28.07c-1.14-4.57-2.26-9.61-3.32-14.74l-21.1,39.31c-1.35,2.52-1.42,5.54-.19,8.13l5.29,11.05c.64,1.34,2,2.2,3.48,2.2,3.73,0,6.75,3.02,6.75,6.75s-3.02,6.75-6.75,6.75h-12.52c-8.28,0-15.95-4.35-20.2-11.45l-3.5-5.85c-2.92-4.87-3.54-10.78-1.7-16.15l18.27-53.46c1.95-4.64,2.07-9.85.35-14.57l-20.09-55.11-1.53.44-.22-.75-3.71-12.76-2.87,13.51-.91-.27-.25.89-15.68,54.94c-3.59,13.37-4.78,25.01-6.14,50.07-1.36,25.06.92,41.65.92,41.65-.21,4.66-2.46,8.99-6.16,11.85-4,3.09-9.51,7.4-14.71,11.61-14.8,11.99-36.29,1.05-26.09-10.72,3.59-4.15,10.27-10.46,13.97-15.61,2.45-3.41,3.64-7.57,3.38-11.76l-4.25-67.5c-.34-6.15-.12-12.32.66-18.44l6.26-49.21c-29.07-5.78-57.6-15.42-83.32-11.37-44.45,7-79.32,45.2-116.57,54.83-15.82,4.09-32.22,4.91-48.29,4.94v154.15h598v-227.43c-18.87,7.14-37.51,13.81-55.98,14.25Z"/><path class="fill-block" d="m344.56,284.29c-.03.28-.06.52-.08.71.02-.21.05-.45.08-.71Z"/><path class="fill-block" d="m415.42,380.45c-.06-.08-.11-.15-.17-.23-4.32-6.67-11.52-11.3-19.85-12.1-.17-.1-.35-.19-.53-.29-.53-.29-1.05-.58-1.59-.84-.14-.07-.27-.13-.41-.19-.54-.26-1.09-.5-1.64-.72-.09-.04-.19-.07-.28-.11-.62-.24-1.24-.46-1.87-.66-.03,0-.06-.02-.08-.03-.68-.21-1.37-.4-2.06-.56v6.85c0,1.93-1.56,3.49-3.49,3.49s-3.49-1.56-3.49-3.49v-7.55c-1.49.04-2.96.19-4.42.45-.05,0-.1.02-.15.03-.66.12-1.31.27-1.96.44-.09.02-.18.04-.27.07-.71.19-1.41.41-2.1.66-1.94.7-3.84,1.6-5.69,2.73-3.91,2.38-7.46,5.63-10.57,9.66l1.31,6.28-1.34.38,11.36,63.51c1.59,8.9.13,18.07-4.14,26.04l-3.56,6.64c1.06,5.14,2.18,10.17,3.32,14.74,5.78,23.14,23.65,28.07,38.62,28.07s26.37-8.93,28.67-22.2c2.09-12.07,2.12-17.1,2.12-56.57s-7.83-52.74-15.75-64.51Z"/><path class="fill-block" d="m391.87,355.13h-21.61c0,3.72.38,7.5.8,10.55,2.89-1.04,5.87-1.58,8.9-1.65,0,0-3.15-1.5-4.68-3.79,1.53,2.3,4.68,3.79,4.68,3.79v7.55c0,1.93,1.56,3.49,3.49,3.49s3.49-1.56,3.49-3.49v-9.69,2.84c2.82.65,5.57,1.73,8.22,3.26-.8-5.06-3.29-12.86-3.29-12.86Z"/><path class="fill-block" d="m391.87,355.13h-21.61c0,3.72.38,7.5.8,10.55,2.89-1.04,5.87-1.58,8.9-1.65,0,0-3.15-1.5-4.68-3.79,1.53,2.3,4.68,3.79,4.68,3.79v7.55c0,1.93,1.56,3.49,3.49,3.49s3.49-1.56,3.49-3.49v-9.69,2.84c2.82.65,5.57,1.73,8.22,3.26-.8-5.06-3.29-12.86-3.29-12.86Z"/><path class="fill-block" d="m379.96,371.58v-7.55c-1.49.04-2.96.19-4.42.45-.05,0-.1.02-.15.03-.66.12-1.31.27-1.96.44-.09.02-.18.04-.27.07-.71.19-1.41.41-2.1.66-1.94.7-3.84,1.6-5.69,2.73-3.91,2.38-7.46,5.63-10.57,9.66l1.31,6.28-1.34.38,1.22,6.81c1.15-2.5,2.48-4.84,3.98-7,5.47-7.87,12.56-12.29,20.03-12.52-.02-.14-.04-.29-.04-.44Z"/><path class="fill-block" d="m407.86,379.97c-3.43-4.93-7.46-8.82-11.97-11.57-.24-.15-.49-.28-.74-.42-2.65-1.52-5.4-2.6-8.22-3.26v6.85c0,.48-.1.93-.27,1.35,5.44,1.7,10.5,5.67,14.63,11.61,5.93,8.53,9.2,19.95,9.2,32.15s-3.27,23.62-9.2,32.15c-5.63,8.09-12.96,12.55-20.66,12.55-4.89,0-9.64-1.81-13.89-5.2-.07,3-.46,5.98-1.19,8.88,4.76,2.86,9.83,4.31,15.08,4.31s10.45-1.48,15.26-4.41c4.51-2.74,8.54-6.64,11.97-11.57,6.86-9.86,10.63-22.9,10.63-36.71s-3.78-26.85-10.63-36.71Z"/><path class="fill-block" d="m395.89,368.4c4.51,2.74,8.54,6.64,11.97,11.57,4.87,7,8.17,15.6,9.68,24.94,1.29-3.14,2.01-6.57,2.01-10.17,0-13.9-10.6-25.32-24.16-26.62.17.09.34.18.5.28Z"/><path class="fill-block" d="m392.81,421.48c6.77,0,12.95-2.52,17.66-6.67-.32-11.49-3.54-22.18-9.17-30.28-4.13-5.94-9.19-9.91-14.63-11.61,0,0,0-.02,0-.03-.52,1.27-1.77,2.17-3.23,2.17-1.93,0-3.49-1.56-3.49-3.49v-.3c-8.28,4.54-13.9,13.35-13.9,23.46,0,14.77,11.97,26.75,26.75,26.75Z"/><path class="fill-block" d="m386.87,372.28c.05-.23.07-.46.07-.7,0,.24-.02.47-.07.7Z"/><polygon class="fill-block" points="259.81 312.91 248.81 384.35 298.18 398.94 301.06 385.43 304.99 398.94 356.12 384.35 341.23 312.91 343.8 290.78 255.35 290.78 259.81 312.91"/><path class="fill-block" d="m386.22,280.88l-29.53-40.39c-5.93-8.1-14.75-13.61-24.64-15.36l-18.94-3.36h0s-1.78,4.28-5.85,12.01c-4.08,7.73-6.2,10.85-6.2,10.85,0,0-2.71-4.22-6.52-11.45-3.81-7.22-5.53-11.41-5.53-11.41h-6.57l-41.06-48.85c-2.98-3.54-5.15-7.7-6.35-12.17l-15.14-56.2c-.22-.83-1.07-1.33-1.9-1.12l-22.28,5.51c-.83.21-1.35,1.04-1.16,1.87l14.04,63.34c1,4.52,2.83,8.81,5.38,12.66l20.5,30.91c5.86,8.83,9.94,18.71,12.03,29.09l8.86,43.98h88.45l1.06-9.06,16.3,15.28c3.14,2.94,5.01,7,5.2,11.3l2.03,45.05c.04,1,.87,1.79,1.87,1.79h21.61c1.03,0,1.87-.84,1.87-1.87v-49.38c0-8.27-2.63-16.33-7.51-23Zm-85.17,2.29c-1.48,0-2.68-1.2-2.68-2.68s1.2-2.68,2.68-2.68,2.68,1.2,2.68,2.68-1.2,2.68-2.68,2.68Zm0-15.97c-1.48,0-2.68-1.2-2.68-2.68s1.2-2.68,2.68-2.68,2.68,1.2,2.68,2.68-1.2,2.68-2.68,2.68Zm0-15.97c-1.48,0-2.68-1.2-2.68-2.68s1.2-2.68,2.68-2.68,2.68,1.2,2.68,2.68-1.2,2.68-2.68,2.68Z"/><path class="fill-block" d="m328.59,178.13c-1.81-2.61.08-5.44-2.88-16.47-2.37-8.81-11.27-15.59-24.65-15.59s-22.28,6.77-24.65,15.59c-2.96,11.03-1.07,13.85-2.88,16.47,2.44,15.63,7.32,25.13,15.48,29.38v14.25s1.72,4.18,5.53,11.41c3.81,7.22,6.52,11.45,6.52,11.45,0,0,2.13-3.12,6.2-10.85,4.08-7.73,5.85-12.01,5.85-12.01v-14.25c8.17-4.25,13.04-13.75,15.48-29.38Z"/><path class="fill-block" d="m324.24,137.71c-1.53,3.79-4.97,4.37-11.45,2.63-7.09-1.9-9.65-4.38-8.36-9.2,0-.02.01-.04.02-.06-1.1-.06-2.22-.1-3.39-.1s-2.3.04-3.39.1c0,.02.01.04.02.06,1.29,4.82-1.27,7.3-8.36,9.2-6.48,1.74-9.92,1.15-11.45-2.63-15.6,12.09-12.16,36.83-11.07,43.42,0,0,4.95-.45,6.72-3,1.81-2.61-.08-5.44,2.88-16.47,2.37-8.81,11.27-15.59,24.65-15.59s22.28,6.77,24.65,15.59c2.96,11.03,1.07,13.85,2.88,16.47,1.77,2.55,6.72,3,6.72,3,1.09-6.59,4.53-31.33-11.07-43.42Z"/><ellipse class="fill-block" cx="301.06" cy="190.86" rx="10.67" ry="5.45"/><path class="fill-block" d="m314.34,134.57c5.42,1.45,8.72,1.29,10.55-1.03-.43-2.92-3.2-4.72-8.62-6.17-5.42-1.45-8.72-1.29-10.55,1.03.43,2.92,3.2,4.72,8.62,6.17Z"/><path class="fill-block" d="m324.89,133.53c-1.83,2.32-5.13,2.49-10.55,1.03-5.42-1.45-8.2-3.25-8.62-6.17-.56.71-.99,1.62-1.29,2.75-1.29,4.82,1.27,7.3,8.36,9.2,7.09,1.9,10.55,1.03,11.84-3.78.3-1.13.39-2.13.26-3.03Z"/><path class="fill-block" d="m287.77,134.57c-5.42,1.45-8.72,1.29-10.55-1.03.43-2.92,3.2-4.72,8.62-6.17,5.42-1.45,8.72-1.29,10.55,1.03-.43,2.92-3.2,4.72-8.62,6.17Z"/><path class="fill-block" d="m277.22,133.53c1.83,2.32,5.13,2.49,10.55,1.03,5.42-1.45,8.2-3.25,8.62-6.17.56.71.99,1.62,1.29,2.75,1.29,4.82-1.27,7.3-8.36,9.2-7.09,1.9-10.55,1.03-11.84-3.78-.3-1.13-.39-2.13-.26-3.03Z"/><path class="fill-block" d="m345.89,258.14s.29,12.22-1.04,23.57c-1.06,9.07,0,0,0,0"/><path class="fill-block" d="m335.31,181.13s-4.95-.45-6.72-3q-.16-.23,0,0c-.67,4.3-1.53,8.13-2.59,11.52h0s7.78,1.17,9.31-8.52h0s0,0,0,0Z"/><path class="fill-block" d="m266.8,181.13s4.95-.45,6.72-3q.16-.23,0,0c.67,4.3,1.53,8.13,2.59,11.52h0s-7.78,1.17-9.31-8.52h0s0,0,0,0Z"/><path class="fill-block" d="m213.94,91.36l-1.45-3.4.87-.26-8.97,2.66,4.87-1.45,2.13,7.43c.8,2.79.21,4.01-4.78,5.44s-6.14.71-6.94-2.08c-.77-2.68-.24-3.91,4.21-5.27-.29-1.03-.65-2.25-1.04-3.62l-2.58.76,2.58-.76h0l1.55-.46,8.97-2.66c.87-.26,1.52-1,1.67-1.9.03-.19.04-.39.02-.58-.03-.38-.16-.75-.37-1.08-.1-.16-.23-.31-.37-.45l-1.41-1.33-13.16,3.2,13.16-3.2.07-.52c.03-.22.04-.43.04-.64s-.02-.42-.05-.63c-.07-.42-.19-.82-.38-1.19-.36-.75-.95-1.39-1.7-1.83l-1.01-.59-11.69,3.34,11.69-3.34.13-.92c.18-1.3-.37-2.59-1.43-3.35-.79-.57-1.78-.79-2.73-.6l-6.22,1.2c-2.57.5-4.71,2.26-5.69,4.69l-1.33,3.3c-1.86,4.62-1.63,9.82.64,14.26l6.38,12.52,14.65-3.54.67-3.39c.65-3.29.29-6.69-1.02-9.78Z"/><path class="fill-block" d="m204.39,90.37l-1.55.46c.05.18.1.36.15.54.08.28.16.56.24.83.24.82.45,1.58.65,2.25,1.11-.32,2.6-.7,3.37-.81-.77.11-2.26.49-3.37.81-4.45,1.36-4.97,2.59-4.21,5.27.8,2.79,1.95,3.51,6.94,2.08,4.99-1.43,5.58-2.65,4.78-5.44l-2.13-7.43-4.87,1.45Z"/><path class="fill-block" d="m204.52,72.35l-16.1-56.15c-.25-.86-1.01-1.35-2.47-.93-.74.21-1.41.93-1.58,1.68-.47,2.08-.89,6.32,1.77,15.59,2.04,7.11,7.37,25.69,11.84,41.28.53-.24,1.09-.42,1.67-.53l4.88-.94Z"/><path class="fill-block" d="m242.92,445.65c-.78,6.11-1,12.28-.66,18.44l4.25,67.5c.26,4.19-.93,8.35-3.38,11.76-3.7,5.15-10.38,11.47-13.97,15.61-10.2,11.77,11.29,22.72,26.09,10.72,5.2-4.21,10.71-8.52,14.71-11.61,3.69-2.85,5.94-7.19,6.16-11.85,0,0-2.28-16.59-.92-41.65,1.36-25.06,2.55-36.69,6.14-50.07l15.94-55.82-46.63-13.78-7.73,60.75Z"/><path class="fill-block" d="m361.99,474.28c4.28-7.97,5.74-17.14,4.14-26.04l-11.36-63.51-48.25,13.77,20.09,55.11c1.72,4.73,1.6,9.93-.35,14.57l-18.27,53.46c-1.84,5.37-1.21,11.28,1.7,16.15l3.5,5.85c4.25,7.1,11.92,11.45,20.2,11.45h12.52c3.73,0,6.75-3.02,6.75-6.75s-3.02-6.75-6.75-6.75c-6.04,0-11.2.7-14.41,0,3.21.7,8.36,0,14.41,0-1.49,0-2.84-.85-3.48-2.2l-5.29-11.05c-1.24-2.58-1.17-5.6.19-8.13l24.66-45.94Z"/><path class="fill-block" d="m301.06,283.17c-1.48,0-2.68-1.2-2.68-2.68s1.2-2.68,2.68-2.68,2.68,1.2,2.68,2.68-1.2,2.68-2.68,2.68Z"/><path class="fill-block" d="m301.06,267.2c-1.48,0-2.68-1.2-2.68-2.68s1.2-2.68,2.68-2.68,2.68,1.2,2.68,2.68-1.2,2.68-2.68,2.68Z"/><path class="fill-block" d="m301.06,251.23c-1.48,0-2.68-1.2-2.68-2.68s1.2-2.68,2.68-2.68,2.68,1.2,2.68,2.68-1.2,2.68-2.68,2.68Z"/><line class="still-stroke" x1="359.99" y1="384.52" x2="392.81" y2="384.52"/><line class="still-stroke" x1="358.3" y1="404.47" x2="409.36" y2="404.47"/><line class="still-stroke" x1="361.87" y1="424.42" x2="409.36" y2="424.42"/><line class="still-stroke" x1="366.06" y1="444.36" x2="403.67" y2="444.36"/><line class="still-stroke" x1="396.99" y1="464.31" x2="426.96" y2="464.31"/><line class="still-stroke" x1="359.34" y1="484.26" x2="424.65" y2="484.26"/><line class="still-stroke" x1="364.78" y1="504.21" x2="420.84" y2="504.21"/><line class="still-stroke" x1="416.94" y1="450.92" x2="416.94" y2="513.51"/><line class="still-stroke" x1="396.99" y1="391.01" x2="396.99" y2="453.99"/><line class="still-stroke" x1="396.99" y1="464.31" x2="396.99" y2="519.12"/><line class="still-stroke" x1="377.04" y1="373.45" x2="377.04" y2="461.05"/><line class="still-stroke" x1="418.16" y1="424.42" x2="426.96" y2="424.42"/><line class="still-stroke" x1="413.38" y1="444.36" x2="426.96" y2="444.36"/><line class="still-stroke" x1="377.04" y1="469.91" x2="377.04" y2="512.49"/><path class="still-stroke" d="m303.37,249.9c1.82-3.18,4.37-5.89,8.24-13.23,6.24-11.84,6.87-13.95,6.87-13.95"/><path class="still-stroke" d="m283.13,221.76s1.84,4.41,7.85,15.8c3.8,7.21,6.12,9.46,7.83,12.44"/><path class="still-stroke" d="m307.91,161.15s3.28,0,5.2-2.75"/><path class="still-stroke" d="m294.21,161.15s-3.28,0-5.2-2.75"/><line class="still-stroke" x1="261.37" y1="312.91" x2="339.66" y2="312.91"/><path class="still-stroke" d="m286.26,312.91s-1.47,13.89-9.18,11.77c-4.83-1.33-2.31-9.66,9.18-11.77Z"/><path class="still-stroke" d="m286.26,312.91s10.87,2.41,11.85,6.46c.98,4.06-3.3,6.91-6,4.67s-5.85-11.13-5.85-11.13Z"/><path class="still-stroke" d="m286.26,312.91s-2.38,20.26-4.59,26.56"/><path class="still-stroke" d="m286.43,313.61s3.91,16.84,4.93,24.16"/><ellipse class="still-filled" cx="292.24" cy="169.34" rx="1.96" ry="4.27"/><ellipse class="still-filled" cx="309.87" cy="169.34" rx="1.96" ry="4.27"/><path class="still-stroke" d="m298.64,179.46c.56.5,1.43.83,2.41.83s1.85-.32,2.41-.83"/><circle class="still-filled" cx="82.26" cy="485.77" r="1.42"/><circle class="still-filled" cx="34.71" cy="520.85" r="1.42"/><circle class="still-filled" cx="76.48" cy="466.73" r="1.42"/><circle class="still-filled" cx="131.72" cy="437.99" r="1.42"/><circle class="still-filled" cx="123.29" cy="465.31" r="1.42"/><circle class="still-filled" cx="152.1" cy="485.87" r="1.42"/><circle class="still-filled" cx="174.57" cy="427.54" r="1.42"/><circle class="still-filled" cx="202.41" cy="462.48" r="1.42"/><circle class="still-filled" cx="209.49" cy="432.22" r="1.42"/><circle class="still-filled" cx="76.48" cy="548.23" r="1.42"/><circle class="still-filled" cx="153.51" cy="548.23" r="1.42"/><circle class="still-filled" cx="180" cy="510.16" r="1.42"/><circle class="still-filled" cx="203.83" cy="556.11" r="1.42"/><circle class="still-filled" cx="223.47" cy="536.98" r="1.42"/><circle class="still-filled" cx="300.3" cy="498.57" r="1.42"/><circle class="still-filled" cx="315.71" cy="469.38" r="1.42"/><circle class="still-filled" cx="236.79" cy="494.21" r="1.42"/><circle class="still-filled" cx="134.39" cy="528.69" r="1.42"/><circle class="still-filled" cx="23.84" cy="484.45" r="1.42"/><circle class="still-filled" cx="18.2" cy="557.53" r="1.42"/><circle class="still-filled" cx="118.63" cy="570.77" r="1.42"/><circle class="still-filled" cx="374.24" cy="565.13" r="1.42"/><circle class="still-filled" cx="422.93" cy="566.54" r="1.42"/><circle class="still-filled" cx="448.1" cy="579.57" r="1.42"/><circle class="still-filled" cx="471.67" cy="546.81" r="1.42"/><circle class="still-filled" cx="452.88" cy="499.98" r="1.42"/><circle class="still-filled" cx="479.02" cy="448.9" r="1.42"/><circle class="still-filled" cx="440.74" cy="407.42" r="1.42"/><circle class="still-filled" cx="463.17" cy="389.58" r="1.42"/><circle class="still-filled" cx="490.74" cy="409.01" r="1.42"/><circle class="still-filled" cx="518.45" cy="404.59" r="1.42"/><circle class="still-filled" cx="295.67" cy="569.35" r="1.42"/><circle class="still-filled" cx="492.16" cy="488.8" r="1.42"/><circle class="still-filled" cx="526.65" cy="462.48" r="1.42"/><circle class="still-filled" cx="558.72" cy="430.8" r="1.42"/><circle class="still-filled" cx="573.6" cy="483.04" r="1.42"/><circle class="still-filled" cx="587.17" cy="404.59" r="1.42"/><circle class="still-filled" cx="59.08" cy="570.77" r="1.42"/><circle class="still-filled" cx="107.09" cy="518.02" r="1.42"/><circle class="still-filled" cx="105.68" cy="436.58" r="1.42"/><circle class="still-filled" cx="234.13" cy="406.01" r="1.42"/><circle class="still-filled" cx="445.27" cy="461.16" r="1.42"/><circle class="still-filled" cx="421.51" cy="379.61" r="1.42"/><circle class="still-filled" cx="532.13" cy="566.54" r="1.42"/><circle class="still-filled" cx="155.85" cy="580.99" r="1.42"/><circle class="still-filled" cx="235.55" cy="454.97" r="1.42"/><circle class="still-filled" cx="168.36" cy="454.97" r="1.42"/><circle class="still-filled" cx="157.68" cy="406.01" r="1.42"/><circle class="still-filled" cx="512.89" cy="488.8" r="1.42"/><circle class="still-filled" cx="69.33" cy="519.44" r="1.42"/><circle class="still-filled" cx="525.41" cy="432.22" r="1.42"/><circle class="still-filled" cx="539.87" cy="518.02" r="1.42"/><circle class="still-filled" cx="560.14" cy="530.11" r="1.42"/><circle class="still-filled" cx="493.58" cy="548.23" r="1.42"/><circle class="still-filled" cx="565.13" cy="578.16" r="1.42"/><circle class="still-filled" cx="513.2" cy="589.36" r="1.42"/><line class="still-stroke" x1="408.26" y1="127.83" x2="559.17" y2="127.83"/><line class="still-stroke" x1="538.85" y1="140.81" x2="525.41" y2="140.81"/><line class="still-stroke" x1="517.45" y1="140.81" x2="491.26" y2="140.81"/><line class="still-stroke" x1="472.82" y1="140.81" x2="460.52" y2="140.81"/><line class="still-stroke" x1="445.27" y1="140.81" x2="441.17" y2="140.81"/><line class="still-stroke" x1="427.96" y1="140.81" x2="416.12" y2="140.81"/><line class="still-stroke" x1="405.65" y1="140.81" x2="401.33" y2="140.81"/><line class="still-stroke" x1="541.13" y1="153.79" x2="544.09" y2="153.79"/><line class="still-stroke" x1="530.2" y1="153.79" x2="520.18" y2="153.79"/><line class="still-stroke" x1="504.35" y1="153.79" x2="479.19" y2="153.79"/><line class="still-stroke" x1="462.57" y1="153.79" x2="449.14" y2="153.79"/><line class="still-stroke" x1="430.47" y1="153.79" x2="426.14" y2="153.79"/><line class="still-stroke" x1="514.26" y1="166.77" x2="511.53" y2="166.77"/><line class="still-stroke" x1="496.04" y1="166.77" x2="486.25" y2="166.77"/><line class="still-stroke" x1="471.45" y1="166.77" x2="466.67" y2="166.77"/><line class="still-stroke" x1="455.59" y1="166.77" x2="434.94" y2="166.77"/><line class="still-stroke" x1="422.39" y1="166.77" x2="417.04" y2="166.77"/><line class="still-stroke" x1="522" y1="179.75" x2="502.19" y2="179.75"/><line class="still-stroke" x1="491.15" y1="179.75" x2="475.78" y2="179.75"/><line class="still-stroke" x1="464.17" y1="179.75" x2="460.52" y2="179.75"/><line class="still-stroke" x1="431.38" y1="179.75" x2="426.14" y2="179.75"/><line class="still-stroke" x1="477.6" y1="192.74" x2="471.45" y2="192.74"/><line class="still-stroke" x1="504.35" y1="192.74" x2="500.14" y2="192.74"/><line class="still-stroke" x1="37.35" y1="221.44" x2="165.05" y2="221.44"/><line class="still-stroke" x1="75.82" y1="266.94" x2="72.06" y2="266.94"/><line class="still-stroke" x1="128.76" y1="266.94" x2="126.88" y2="266.94"/><line class="still-stroke" x1="113.92" y1="266.94" x2="107.09" y2="266.94"/><line class="still-stroke" x1="114.64" y1="244.19" x2="101.66" y2="244.19"/><line class="still-stroke" x1="85.5" y1="244.19" x2="81.74" y2="244.19"/><line class="still-stroke" x1="49.24" y1="255.56" x2="45.48" y2="255.56"/><line class="still-stroke" x1="41.96" y1="232.82" x2="38.2" y2="232.82"/><line class="still-stroke" x1="169.4" y1="244.19" x2="165.64" y2="244.19"/><line class="still-stroke" x1="149.48" y1="244.19" x2="128.76" y2="244.19"/><line class="still-stroke" x1="155.85" y1="232.82" x2="142.87" y2="232.82"/><line class="still-stroke" x1="93.01" y1="232.82" x2="85.5" y2="232.82"/><line class="still-stroke" x1="69.33" y1="232.82" x2="61.82" y2="232.82"/><line class="still-stroke" x1="131.72" y1="232.82" x2="107.35" y2="232.82"/><line class="still-stroke" x1="65.57" y1="244.19" x2="52.59" y2="244.19"/><line class="still-stroke" x1="75.82" y1="255.56" x2="62.84" y2="255.56"/><line class="still-stroke" x1="139.12" y1="255.56" x2="131.6" y2="255.56"/><line class="still-stroke" x1="123.29" y1="255.56" x2="121.41" y2="255.56"/><line class="still-stroke" x1="111.84" y1="255.56" x2="90.28" y2="255.56"/><path class="still-filled" d="m241.46,629.82l3.84-5.9v-3h-3.44v-1.84h8.98v1.84h-3.42v3l3.84,5.92-1.66,1.2-3.24-5.06-3.24,5.06-1.66-1.22Zm11.32-6.54v-5.54h2.08v17.32h-2.08v-9.94h-3.1v-1.84h3.1Zm4.08-5.76h2.12v17.96h-2.12v-17.96Z"/><path class="still-filled" d="m279.28,628.12v1.94h-7.58v6.06h-2.2v-6.06h-7.6v-1.94h17.38Zm-15.84-3.06l6.08-3.6v-.98h-5.2v-1.92h12.54v1.92h-5.2v.98l6.12,3.6-1.18,1.74-6-3.6-5.98,3.58-1.18-1.72Z"/><path class="still-filled" d="m280.88,626.8l4.44-4.6v-1.68h-4.18v-1.92h10.22v1.92h-3.88v1.68l4.36,4.18-1.52,1.46-3.88-3.78-4.04,4.16-1.52-1.42Zm4.02,2.14h11.74v7.48h-11.74v-7.48Zm9.58,5.62v-3.76h-7.42v3.76h7.42Zm-.04-17.04h2.2v4.26h2.68v1.94h-2.68v4.28h-2.2v-10.48Z"/><path class="still-filled" d="m302.04,618.64h2.18v10.34h1.6c2.58,0,4.42-.18,6.44-.68l.14,1.8c-2.32.7-4.82.8-7.62.8h-2.74v-12.26Zm12.86,7.8h-5.52v-1.9h5.52v-2.12h-5.52v-1.88h5.52v-3.02h2.2v17.96h-2.2v-9.04Z"/><path class="still-filled" d="m320.12,618.9h4.36v-1.46h2.2v1.46h4.24v1.82h-10.8v-1.82Zm1.28,6.2c0-2.1,1.72-3.64,4.24-3.64s4.22,1.54,4.22,3.64-1.72,3.66-4.22,3.66-4.24-1.58-4.24-3.66Zm6.36-.02c0-1.14-.8-1.86-2.12-1.86s-2.14.72-2.14,1.86.8,1.92,2.14,1.92,2.12-.76,2.12-1.92Zm-2.26,7.7c0-2.42,2-4.06,5.14-4.06s5.14,1.62,5.14,4.04-1.98,4.02-5.14,4.02-5.14-1.6-5.14-4Zm8.08-.02c0-1.32-1.06-2.18-2.94-2.18s-2.94.84-2.94,2.18,1.08,2.16,2.94,2.16,2.94-.86,2.94-2.16Zm.06-15.24h2.2v4.48h2.68v1.94h-2.68v4.62h-2.2v-11.04Z"/><path class="still-filled" d="m339.62,626.68l3.68-4.46v-1.74h-3.4v-1.82h8.92v1.82h-3.4v1.74l3.7,4.46-1.54,1.3-3.22-3.84-3.2,3.84-1.54-1.3Zm6.22,5.98c0-2.48,2-4.2,5.46-4.2s5.44,1.68,5.44,4.18-1.98,4.14-5.44,4.14-5.46-1.66-5.46-4.12Zm8.72-.04c0-1.38-1.06-2.3-3.26-2.3s-3.26.9-3.26,2.3,1.06,2.3,3.26,2.3,3.26-.92,3.26-2.3Zm-3.94-14.88h2.08v4.1h2.16v-4.32h2.12v10.82h-2.12v-4.66h-2.16v4.04h-2.08v-9.98Z"/><path class="still-filled" d="m272.42,656.95v-7.41l-1.74.83-.66-1.14,2.47-1.51h1.46v9.24h-1.54Z"/><path class="still-filled" d="m275.9,654.67h1.44c.05.74.5,1.2,1.42,1.2,1.59,0,1.89-1.54,1.93-2.93-.47.53-1.22.85-2.15.85-1.64,0-2.83-1.14-2.83-3.12s1.1-3.14,3.19-3.14,3.31,1.27,3.31,3.87v.91c0,2.89-1,4.81-3.42,4.81-1.81,0-2.89-1.04-2.89-2.46Zm3.07-2.17c.95,0,1.66-.58,1.71-1.73-.06-1.32-.77-1.91-1.71-1.91-1.15,0-1.74.66-1.74,1.78s.53,1.86,1.74,1.86Z"/><path class="still-filled" d="m287.86,649.06h-3.89v-1.34h5.73v1.34l-2.41,2.13c1.8.06,2.75,1.16,2.75,2.85,0,1.89-1.18,3.08-3.32,3.08s-3.24-1.02-3.24-2.9h1.54c0,.88.47,1.57,1.74,1.57s1.75-.71,1.75-1.73c0-1.09-.59-1.67-1.61-1.67-.47,0-1.04.1-1.25.17l-.37-1.01,2.58-2.51Z"/><path class="still-filled" d="m293.1,656.95v-7.41l-1.74.83-.66-1.14,2.47-1.51h1.46v9.24h-1.54Z"/><path class="still-filled" d="m296.26,653.62v-1.22h5.43v1.22h-5.43Z"/><path class="still-filled" d="m304.64,656.95v-7.41l-1.74.83-.66-1.14,2.47-1.51h1.46v9.24h-1.54Z"/><path class="still-filled" d="m308.12,654.67h1.44c.05.74.5,1.2,1.42,1.2,1.59,0,1.89-1.54,1.93-2.93-.47.53-1.22.85-2.15.85-1.64,0-2.83-1.14-2.83-3.12s1.1-3.14,3.19-3.14,3.31,1.27,3.31,3.87v.91c0,2.89-1,4.81-3.42,4.81-1.81,0-2.89-1.04-2.89-2.46Zm3.07-2.17c.95,0,1.66-.58,1.71-1.73-.06-1.32-.77-1.91-1.71-1.91-1.15,0-1.74.66-1.74,1.78s.53,1.86,1.74,1.86Z"/><path class="still-filled" d="m320.08,649.06h-3.89v-1.34h5.73v1.34l-2.41,2.13c1.8.06,2.75,1.16,2.75,2.85,0,1.89-1.18,3.08-3.32,3.08s-3.24-1.02-3.24-2.9h1.54c0,.88.47,1.57,1.74,1.57s1.75-.71,1.75-1.73c0-1.09-.59-1.67-1.61-1.67-.47,0-1.04.1-1.25.17l-.37-1.01,2.58-2.51Z"/><path class="still-filled" d="m326.85,652.48c.58-.54,1.21-1.24,1.21-2.27s-.58-1.32-1.56-1.32-1.58.73-1.58,1.8h-1.56c0-1.87,1.13-3.15,3.26-3.15,1.85,0,3,.96,3,2.66,0,1.58-.98,2.57-1.67,3.23-.78.76-1.66,1.5-2.54,2.18h4.35v1.34h-6.42v-1.43c.78-.65,2.57-2.17,3.5-3.05Z"/><path class="still-filled" d="m169.94,683.57c0-1.09.72-2.06,1.63-2.69l.53.56c-.55.42-.9.83-1,1.34.5.06.77.47.77.92,0,.31-.14.6-.35.78h-1.28c-.2-.18-.3-.46-.3-.92Zm2.65,0c0-1.09.72-2.06,1.63-2.69l.53.56c-.55.42-.9.83-1,1.34.5.06.77.47.77.92,0,.31-.14.6-.35.78h-1.28c-.2-.18-.3-.46-.3-.92Z"/><path class="still-filled" d="m175.62,687.59l2.72-2.9v-1.28h-2.43v-1.36h6.21v1.36h-2.24v1.28l2.66,2.82-1.09,1-2.31-2.48h-.02l-2.39,2.57-1.1-1Zm2.63,1.05h1.55v2.65h5.88v1.34h-7.42v-3.99Zm5.75-3.02h-2.53v-1.36h2.53v-2.91h1.56v8.01h-1.56v-3.74Z"/><path class="still-filled" d="m189.19,681.67h1.54v.98h4.19v-.98h1.52v4.5h-2.84v.72h4.43v1.38h-10.42v-1.38h4.44v-.72h-2.84v-4.5Zm5.85,8.59h-6.09v-1.34h7.64v3.91h-1.55v-2.57Zm-.13-5.41v-.88h-4.19v.88h4.19Z"/><path class="still-filled" d="m209.78,686.24v1.33h-10.42v-1.33h10.42Zm-8.85,3.54h5.75v-.56h-5.75v-1.2h7.28v2.94h-5.75v.58h5.94v1.2h-7.47v-2.95Zm.34-6.21c0-1.42,1.28-2.23,3.31-2.23s3.32.82,3.32,2.23-1.28,2.25-3.32,2.25-3.31-.82-3.31-2.25Zm5.07,0c0-.61-.58-.91-1.76-.91s-1.76.3-1.76.91.58.94,1.76.94,1.76-.33,1.76-.94Z"/><path class="still-filled" d="m213.9,682.21h3.07v1.35h-1.54v4.07h.11c.22,0,1.09-.05,1.46-.16l.12,1.26c-.64.22-1.46.26-1.87.26h-1.36v-6.79Zm3.49,0h3.19v1.35h-1.66v4.07h.24c.43,0,1.07-.02,1.85-.24l.12,1.26c-.77.26-1.93.35-2.67.35h-1.07v-6.79Zm4.35-.85h1.56v3.68h1.42v1.38h-1.42v5.71h-1.56v-10.77Z"/><path class="still-filled" d="m229.89,683.56h-3.91v-1.35h5.59v.17c0,3.39-2.01,5.66-4.98,7.17l-.94-1.18c2.69-1.34,4.09-3.07,4.23-4.81Zm4.02-2.21h1.56v10.77h-1.56v-10.77Z"/><path class="still-filled" d="m243.35,688.63h-2.88l-.16-1.36h4.69c.65,0,1.92-.06,2.72-.23l.16,1.28c-1,.25-2.06.29-2.97.3v3.25h-1.56v-3.25Zm-2-4.53c0-1.38,1.04-2.42,2.77-2.42s2.77,1.04,2.77,2.42-1.04,2.43-2.77,2.43-2.77-1.04-2.77-2.43Zm3.98,0c0-.65-.49-1.13-1.21-1.13s-1.21.48-1.21,1.13.49,1.14,1.21,1.14,1.21-.48,1.21-1.14Zm3.23-2.75h1.56v10.77h-1.56v-10.77Z"/><path class="still-filled" d="m251.7,682.71h2.24v-1.21h1.51v1.21h2.04v1.31h-5.79v-1.31Zm.43,4.39c0-1.54,1.03-2.53,2.6-2.53s2.6,1,2.6,2.53-1.04,2.53-2.6,2.53-2.6-1-2.6-2.53Zm3.72-.01c0-.8-.41-1.26-1.12-1.26s-1.12.46-1.12,1.26.42,1.28,1.12,1.28,1.12-.47,1.12-1.28Zm2.31-5.6h1.49v3.63h1.14v-3.77h1.51v10.77h-1.51v-5.7h-1.14v5.45h-1.49v-10.39Z"/><path class="still-filled" d="m277.22,686.51v1.38h-4.43v.73h2.84v4.07h-7.24v-4.07h2.84v-.73h-4.44v-1.38h10.42Zm-9.67-1.67l3.73-2.32v-1.19h1.56v1.19l3.73,2.32-.8,1.28-3.69-2.32h-.02l-3.69,2.32-.8-1.28Zm6.55,6.52v-1.43h-4.17v1.43h4.17Z"/><path class="still-filled" d="m288.98,686.24v1.33h-10.42v-1.33h10.42Zm-8.85,3.54h5.75v-.56h-5.75v-1.2h7.28v2.94h-5.75v.58h5.94v1.2h-7.47v-2.95Zm.34-6.21c0-1.42,1.28-2.23,3.31-2.23s3.32.82,3.32,2.23-1.28,2.25-3.32,2.25-3.31-.82-3.31-2.25Zm5.07,0c0-.61-.58-.91-1.76-.91s-1.76.3-1.76.91.58.94,1.76.94,1.76-.33,1.76-.94Z"/><path class="still-filled" d="m293.42,681.95h5.54v1.81h2.39v-2.41h1.56v6.09h-1.56v-2.33h-2.39v1.87h-5.54v-5.04Zm4.01,3.72v-2.4h-2.47v2.4h2.47Zm-1.73,2.33h7.21v4.69h-7.21v-4.69Zm5.67,3.37v-2.05h-4.14v2.05h4.14Z"/><path class="still-filled" d="m315.38,687.99v1.38h-4.43v3.14h-1.56v-3.14h-4.44v-1.38h10.42Zm-9.45-1.92l3.49-1.81v-.56h-2.99v-1.36h2.97v-1.08h1.55v1.08h2.97v1.36h-2.99v.56l3.49,1.81-.78,1.27-3.47-1.92h-.02l-3.45,1.92-.78-1.27Z"/><path class="still-filled" d="m320.37,689.67v-3.51h1.56v3.51h5.21v1.38h-10.42v-1.38h3.66Zm5.85-7.6v1.91c0,1.43-.18,3.01-.4,4.02h-1.39l-.1-.05c.19-.73.32-2,.32-3.13v-1.39h-6.84v-1.36h8.4Z"/><path class="still-filled" d="m341.78,686.14v1.36h-4.43v.49h2.85v2.95h-5.75v.59h5.94v1.2h-7.47v-2.96h5.75v-.58h-5.75v-1.2h2.87v-.49h-4.44v-1.36h10.42Zm-8.83-4.51h7.24v4.03h-7.24v-4.03Zm5.71,2.73v-1.44h-4.17v1.44h4.17Z"/><path class="still-filled" d="m343.1,686.22l2.58-2.36v-.62h-2.38v-1.36h6.08v1.36h-2.17v.62l2.52,2.24-1.04,1.04-2.23-1.98h-.02l-2.29,2.1-1.04-1.04Zm2.52,3.29h5.67v-.77h-5.67v-1.23h7.21v3.21h-5.67v.77h5.87v1.24h-7.4v-3.21Zm5.65-8.15h1.56v5.66h-1.56v-5.66Z"/><path class="still-filled" d="m354.49,682.54h2.5v-1.13h1.56v1.13h2.41v1.32h-6.46v-1.32Zm.59,4.48c0-1.44,1.06-2.54,2.78-2.54s2.78,1.1,2.78,2.54-1.06,2.54-2.78,2.54-2.78-1.12-2.78-2.54Zm4.04-.01c0-.76-.4-1.24-1.26-1.24s-1.26.48-1.26,1.24.4,1.26,1.26,1.26,1.26-.5,1.26-1.26Zm3.38-5.66h1.56v3.53h1.54v1.38h-1.54v5.87h-1.56v-10.77Z"/><path class="still-filled" d="m377.06,686.99v1.38h-10.42v-1.38h10.42Zm-8.84,2.19h1.55v2.11h5.88v1.34h-7.42v-3.45Zm.01-7.52h1.55v2.99h5.8v1.34h-7.35v-4.33Z"/><path class="still-filled" d="m385.35,683.31h-3.85v-1.36h5.59v.17c0,3.12-2.72,5.07-4.85,6.18l-.85-1.12c1.82-.94,3.51-2.31,3.96-3.87Zm-1.81,8.44l3.25-2.63v-1.28h1.55v1.28l3.25,2.63-1,1.15-3.01-2.48h-.02l-3.02,2.48-1-1.15Zm5.89-6.51h-2.35v-1.35h2.35v-2.53h1.56v7.24h-1.56v-3.36Z"/><path class="still-filled" d="m392.59,688.63h2.29v-3.32h1.54v3.32h1.03c.83,0,1.92-.06,2.72-.23l.16,1.28c-1.14.29-2.39.3-3.37.3h-4.21l-.16-1.36Zm5.46-4.23v-1.03h-4.83v-1.35h6.38v1.67c0,1.37-.16,2.59-.36,3.81h-1.3l-.17-.1c.22-1.15.28-2.05.28-3Zm2.83-3.05h1.56v4.01h1.38v1.38h-1.38v5.38h-1.56v-10.77Z"/><path class="still-filled" d="m411.46,683.24h-3.81v-1.36h5.59v.17c-.07,3.07-3.06,4.91-5.01,5.77l-.75-1.14c1.62-.71,3.44-1.94,3.99-3.44Zm-1.81,4.33h7.36v1.24h-5.83v.71h5.7v1.21h-5.7v.73h5.89v1.24h-7.42v-5.12Zm5.65-6.21h1.56v2.04h1.54v1.38h-1.54v2.24h-1.56v-5.66Z"/><path class="still-filled" d="m419.34,685.46c0-1.94,1.26-3.36,3.18-3.36s3.18,1.42,3.18,3.36-1.25,3.37-3.18,3.37-3.18-1.41-3.18-3.37Zm4.76,0c0-1.32-.6-1.98-1.58-1.98s-1.58.66-1.58,1.98.6,1.99,1.58,1.99,1.58-.7,1.58-1.99Zm3.49-4.1h1.56v10.77h-1.56v-10.77Z"/><path class="still-filled" d="m117.23,709.67v-2.35h1.56v2.35h4.43v1.38h-10.42v-1.38h4.44Zm-3.78-2.94l3.79-2.59v-.72h-3.17v-1.36h7.86v1.36h-3.17v.72l3.79,2.59-.89,1.22-3.65-2.53h-.02l-3.66,2.53-.89-1.22Z"/><path class="still-filled" d="m133.78,701.79v1.2c0,.83-.1,1.96-.26,2.91h1.46v1.38h-10.42v-1.38h7.47c.13-.7.19-1.54.19-2.07v-.68h-6.28v-1.36h7.84Zm-7.58,6.5h7.27v4.4h-7.27v-4.4Zm5.73,3.08v-1.76h-4.2v1.76h4.2Z"/><path class="still-filled" d="m136.25,702.05h5.6v5.38h-5.6v-5.38Zm4.07,4.07v-2.75h-2.53v2.75h2.53Zm-2.03,2.47h1.55v2.71h5.88v1.34h-7.42v-4.05Zm5.65-7.23h1.56v3.03h1.54v1.38h-1.54v3.6h-1.56v-8.01Z"/><path class="still-filled" d="m150.41,706.91l2.69-2.47v-.61h-2.42v-1.36h2.4v-1.09h1.56v1.09h2.22v1.36h-2.24v.61l2.59,2.34-1.02,1.04-2.31-2.11h-.02l-2.41,2.23-1.02-1.03Zm2.52,1.31h7.21v4.47h-7.21v-4.47Zm5.67,3.15v-1.83h-4.14v1.83h4.14Zm-.02-10.01h1.56v2.57h1.54v1.38h-1.54v2.38h-1.56v-6.32Z"/><path class="still-filled" d="m173.14,709.67v1.38h-10.42v-1.38h10.42Zm-8.9-4.69c0-1.73,1.45-3.09,3.68-3.09s3.68,1.37,3.68,3.09-1.44,3.11-3.68,3.11-3.68-1.37-3.68-3.11Zm5.8,0c0-1.03-.73-1.71-2.12-1.71s-2.12.68-2.12,1.71.73,1.73,2.12,1.73,2.12-.71,2.12-1.73Z"/><path class="still-filled" d="m174.7,702.05h5.5v.79h2.42v-1.49h1.56v8.01h-1.56v-2.7h-2.42v.82h-5.5v-5.43Zm3.97,4.11v-2.79h-2.43v2.79h2.43Zm-1.79,2.42h1.55v2.71h5.88v1.34h-7.42v-4.05Zm5.75-3.2v-1.26h-2.42v1.26h2.42Z"/><path class="still-filled" d="m193.55,709.67v-1.98h-3.01v-5.62h7.57v5.62h-3v1.98h4.43v1.38h-10.42v-1.38h4.44Zm3.02-3.3v-2.99h-4.5v2.99h4.5Z"/><path class="still-filled" d="m211.3,707.1v1.38h-10.42v-1.38h10.42Zm-1.61-3.93h-5.66v1.69h5.75v1.36h-7.29v-4.39h7.21v1.34Zm-7.03,6.09h1.55v2.04h5.88v1.34h-7.42v-3.38Z"/><path class="still-filled" d="m219.59,703.31h-3.85v-1.36h5.59v.17c0,3.12-2.72,5.07-4.85,6.18l-.85-1.12c1.82-.94,3.51-2.31,3.96-3.87Zm-1.81,8.44l3.25-2.63v-1.28h1.55v1.28l3.25,2.63-1,1.15-3.01-2.48h-.02l-3.02,2.48-1-1.15Zm5.89-6.51h-2.35v-1.35h2.35v-2.53h1.56v7.24h-1.56v-3.36Z"/><path class="still-filled" d="m237.7,706.24v1.33h-10.42v-1.33h10.42Zm-8.85,3.54h5.75v-.56h-5.75v-1.2h7.28v2.94h-5.75v.58h5.94v1.2h-7.47v-2.95Zm.34-6.21c0-1.42,1.28-2.23,3.31-2.23s3.32.82,3.32,2.23-1.28,2.25-3.32,2.25-3.31-.82-3.31-2.25Zm5.07,0c0-.61-.58-.91-1.76-.91s-1.76.3-1.76.91.58.94,1.76.94,1.76-.33,1.76-.94Z"/><path class="still-filled" d="m251.15,701.79v1.2c0,.85-.11,2.01-.29,2.99h1.48v1.38h-10.42v-1.38h7.46c.16-.71.22-1.58.22-2.15v-.68h-6.28v-1.36h7.84Zm-1.59,8.12h-6.27v-1.34h7.82v4.26h-1.55v-2.91Z"/><path class="still-filled" d="m255.27,701.67h1.54v.98h4.19v-.98h1.52v4.5h-2.84v.72h4.43v1.38h-10.42v-1.38h4.44v-.72h-2.84v-4.5Zm5.85,8.59h-6.09v-1.34h7.64v3.91h-1.55v-2.57Zm-.13-5.41v-.88h-4.19v.88h4.19Z"/><path class="still-filled" d="m265.05,701.92h2.5v-.67h1.56v.67h2.43v1.28h-6.49v-1.28Zm.77,3.7c0-1.22,1.06-2.12,2.52-2.12s2.52.9,2.52,2.12-1.07,2.12-2.52,2.12-2.52-.91-2.52-2.12Zm3.56-.01c0-.55-.42-.88-1.04-.88s-1.03.32-1.03.88.42.9,1.03.9,1.04-.35,1.04-.9Zm-1.97,4.26h5.67v-.54h-5.67v-1.18h7.21v2.87h-5.67v.54h5.86v1.18h-7.4v-2.87Zm5.65-8.5h1.56v2.52h1.54v1.38h-1.54v2.45h-1.56v-6.34Z"/><path class="still-filled" d="m290.5,707.58v1.38h-4.43v3.55h-1.56v-3.55h-4.44v-1.38h10.42Zm-9.74-1.99l3.81-2.51v-1.51h1.56v1.51l3.81,2.51-.85,1.27-3.73-2.48h-.02l-3.73,2.48-.85-1.27Z"/><path class="still-filled" d="m294.74,704.44c0-1.55,1.12-2.67,2.96-2.67s2.96,1.13,2.96,2.67-1.12,2.65-2.96,2.65-2.96-1.12-2.96-2.65Zm.92,7.56l2.22-2.73v-1.09h1.54v1.09l.9,1.1-.95,1.14-.7-.86h-.05l-1.82,2.25-1.14-.9Zm3.44-7.56c0-.82-.52-1.37-1.4-1.37s-1.4.55-1.4,1.37.52,1.34,1.4,1.34,1.4-.53,1.4-1.34Zm.42,7.56l2.22-2.73v-1.09h1.54v1.09l2.22,2.73-1.14.9-1.82-2.25h-.05l-1.82,2.25-1.14-.9Zm3.35-10.64h1.56v6.36h-1.56v-6.36Z"/><path class="still-filled" d="m306.72,702.21h5.49v1.35h-3.95v4.09h.91c1.51,0,2.54-.19,3.75-.53l.12,1.28c-1.39.46-2.94.61-4.64.61h-1.69v-6.81Zm7.38-.85h1.56v3.65h1.54v1.38h-1.54v5.74h-1.56v-10.77Z"/><path class="still-filled" d="m328.66,706.99v1.38h-10.42v-1.38h10.42Zm-8.84,2.19h1.55v2.11h5.88v1.34h-7.42v-3.45Zm.01-7.52h1.55v2.99h5.8v1.34h-7.35v-4.33Z"/><path class="still-filled" d="m333.1,701.95h5.6v5.04h-5.6v-5.04Zm4.07,3.72v-2.4h-2.53v2.4h2.53Zm-1.81,2.35h7.36v1.34h-5.82v1.98h5.88v1.34h-7.42v-4.67Zm5.67-6.67h1.56v6.12h-1.56v-6.12Z"/><path class="still-filled" d="m355.05,706.5v1.38h-10.42v-1.38h10.42Zm-8.73,2.04h7.04v4.15h-7.04v-4.15Zm.23-4.85c0-1.44,1.3-2.27,3.33-2.27s3.35.83,3.35,2.27-1.29,2.28-3.35,2.28-3.33-.83-3.33-2.28Zm5.28,7.68v-1.51h-3.97v1.51h3.97Zm-.17-7.68c0-.61-.59-.94-1.77-.94s-1.78.32-1.78.94.59.95,1.78.95,1.77-.34,1.77-.95Z"/><path class="still-filled" d="m366.81,709.67v1.38h-10.42v-1.38h10.42Zm-8.9-4.69c0-1.73,1.45-3.09,3.68-3.09s3.68,1.37,3.68,3.09-1.44,3.11-3.68,3.11-3.68-1.37-3.68-3.11Zm5.8,0c0-1.03-.73-1.71-2.12-1.71s-2.12.68-2.12,1.71.73,1.73,2.12,1.73,2.12-.71,2.12-1.73Z"/><path class="still-filled" d="m372.79,709.73v-1.69h-3.41v-3.67h6.52v-1.12h-6.52v-1.28h8.04v3.67h-6.52v1.12h6.69v1.28h-3.24v1.69h4.22v1.38h-10.42v-1.38h4.64Z"/><path class="still-filled" d="m390.95,705.98h-1.98c-.2,1.68-1.38,2.84-3.12,2.84-1.89,0-3.15-1.41-3.15-3.37s1.26-3.36,3.15-3.36c1.63,0,2.77,1.03,3.07,2.53h2.03v-3.27h1.56v10.77h-1.56v-6.14Zm-3.54-.53c0-1.32-.59-1.98-1.56-1.98s-1.56.66-1.56,1.98.6,1.99,1.56,1.99,1.56-.7,1.56-1.99Z"/><path class="still-filled" d="m395.04,705.26h3.8v-1.82h-3.8v-1.34h5.35v4.5h-3.8v1.93h1.49c.79,0,2.24-.11,3.08-.36l.12,1.25c-1.16.36-2.71.46-4.03.46h-2.21v-4.61Zm7.66,2.54h-1.85v-1.34h1.85v-1.33h-1.85v-1.34h1.85v-2.43h1.56v10.77h-1.56v-4.32Z"/><path class="still-filled" d="m416.73,706.45v1.38h-4.43v.74h2.78v4.11h-7.11v-4.11h2.77v-.74h-4.44v-1.38h10.42Zm-8.5-2.76c0-1.44,1.3-2.27,3.33-2.27s3.35.83,3.35,2.27-1.29,2.28-3.35,2.28-3.33-.83-3.33-2.28Zm5.33,7.68v-1.47h-4.04v1.47h4.04Zm-.22-7.68c0-.61-.59-.94-1.77-.94s-1.78.32-1.78.94.59.95,1.78.95,1.77-.34,1.77-.95Z"/><path class="still-filled" d="m428.49,706.24v1.33h-10.42v-1.33h10.42Zm-8.85,3.54h5.75v-.56h-5.75v-1.2h7.28v2.94h-5.75v.58h5.94v1.2h-7.47v-2.95Zm.34-6.21c0-1.42,1.28-2.23,3.31-2.23s3.32.82,3.32,2.23-1.28,2.25-3.32,2.25-3.31-.82-3.31-2.25Zm5.07,0c0-.61-.58-.91-1.76-.91s-1.76.3-1.76.91.58.94,1.76.94,1.76-.33,1.76-.94Z"/><path class="still-filled" d="m432.62,705.46c0-1.94,1.26-3.36,3.18-3.36s3.18,1.42,3.18,3.36-1.25,3.37-3.18,3.37-3.18-1.41-3.18-3.37Zm4.76,0c0-1.32-.6-1.98-1.58-1.98s-1.58.66-1.58,1.98.6,1.99,1.58,1.99,1.58-.7,1.58-1.99Zm3.49-4.1h1.56v10.77h-1.56v-10.77Z"/><path class="still-filled" d="m452.63,707.64h-2.97v-1.34h2.97v-1.5h-2.83c-.67,2.15-2.21,3.74-4.19,4.98l-1.02-1.1c2.42-1.49,3.75-3.33,3.89-5.11h-3.78v-1.35h5.44v.17c0,.37-.02.73-.06,1.08h2.54v-2.1h1.56v10.77h-1.56v-4.49Z"/><path class="still-filled" d="m456.52,701.89h1.51v3.97h.62c.59,0,2.06-.08,2.93-.35l.11,1.26c-1.04.31-2.89.4-4.07.4h-1.1v-5.28Zm.85,10.1l2.22-2.73v-1.09h1.54v1.09l.94,1.14-.95,1.14-.73-.9h-.05l-1.82,2.25-1.14-.9Zm3.92,0l2.22-2.73v-1.09h1.54v1.09l2.22,2.73-1.14.9-1.82-2.25h-.05l-1.82,2.25-1.14-.9Zm.95-10.51h1.49v2.34h1.14v-2.47h1.51v6.39h-1.51v-2.62h-1.14v2.58h-1.49v-6.22Z"/><path class="still-filled" d="m468.24,702.21h5.49v1.35h-3.95v4.09h.91c1.51,0,2.54-.19,3.75-.53l.12,1.28c-1.39.46-2.94.61-4.64.61h-1.69v-6.81Zm7.38-.85h1.56v3.65h1.54v1.38h-1.54v5.74h-1.56v-10.77Z"/><path class="still-filled" d="m479.63,710.61c0-.28.12-.52.31-.7h1.37c.18.18.3.42.3.7,0,.56-.44,1.01-.97,1.01-.56,0-1.01-.44-1.01-1.01Z"/><path class="still-filled" d="m483.57,703.19c-.5-.06-.77-.47-.77-.92,0-.31.14-.6.35-.78h1.28c.2.18.3.46.3.92,0,1.09-.72,2.06-1.63,2.69l-.53-.56c.55-.42.9-.83,1-1.34Zm2.65,0c-.5-.06-.77-.47-.77-.92,0-.31.14-.6.35-.78h1.28c.2.18.3.46.3.92,0,1.09-.72,2.06-1.63,2.69l-.53-.56c.55-.42.9-.83,1-1.34Z"/><path class="still-filled" d="m193.91,728.11v-1.22h8.91v1.22h-8.91Z"/><path class="still-filled" d="m207.92,723.31h-3.84v-1.36h5.59v.17c0,3.05-2.93,4.92-4.92,5.86l-.8-1.12c1.67-.8,3.45-2.05,3.97-3.56Zm-1.56,4.69h7.21v4.69h-7.21v-4.69Zm5.67,3.37v-2.05h-4.14v2.05h4.14Zm-.02-10.01h1.56v6.09h-1.56v-6.09Z"/><path class="still-filled" d="m220.05,726.68v-.68c-1.56-.2-2.52-1.01-2.52-2.27,0-1.45,1.3-2.3,3.33-2.3s3.35.85,3.35,2.3c0,1.28-.98,2.09-2.6,2.28v.67h4.43v1.38h-10.42v-1.38h4.44Zm3.05,3.49h-6.09v-1.34h7.64v3.99h-1.55v-2.65Zm-.46-6.44c0-.64-.59-.96-1.77-.96s-1.78.32-1.78.96.59.98,1.78.98,1.77-.36,1.77-.98Z"/><path class="still-filled" d="m227.86,724.57h3.65v-1.31h-3.65v-1.31h5.19v3.91h-3.65v1.43h1.15c.55,0,1.79-.07,2.83-.36l.08,1.24c-1.12.4-2.85.43-3.78.43h-1.83v-4.03Zm1.92,4.5h1.55v2.23h5.88v1.34h-7.42v-3.57Zm5.75-1.94h-1.85v-1.28h1.85v-1.32h-1.85v-1.28h1.85v-1.88h1.56v8.01h-1.56v-2.24Z"/><path class="still-filled" d="m239.55,726.93c0-2.28.62-4.45,1.74-5.71h1.54c-1.28,1.79-1.78,3.53-1.78,5.71s.5,3.9,1.78,5.69h-1.54c-1.12-1.26-1.74-3.42-1.74-5.69Z"/><path class="still-filled" d="m243.26,728.62l2.21-3.38v-1.67h-1.95v-1.31h5.41v1.31h-1.94v1.67l2.21,3.39-1.19.86-1.76-2.78h-.02l-1.76,2.77-1.19-.86Zm6.69-3.91v-3.23h1.49v10.39h-1.49v-5.85h-1.75v-1.31h1.75Zm2.53-3.36h1.51v10.77h-1.51v-10.77Z"/><path class="still-filled" d="m266.03,727.64v1.38h-4.43v3.49h-1.56v-3.49h-4.44v-1.38h10.42Zm-9.51-1.9l3.54-1.99v-.44h-3v-1.36h7.52v1.36h-3v.44l3.57,2-.84,1.24-3.48-1.99h-.02l-3.45,1.98-.84-1.24Z"/><path class="still-filled" d="m266.98,726.81l2.57-2.62v-.86h-2.42v-1.36h6.18v1.36h-2.22v.86l2.53,2.36-1.07,1.03-2.2-2.06h-.02l-2.27,2.29-1.08-1.01Zm2.36,1.31h7.21v4.57h-7.21v-4.57Zm5.67,3.25v-1.93h-4.14v1.93h4.14Zm-.02-10.01h1.56v2.45h1.54v1.38h-1.54v2.4h-1.56v-6.22Z"/><path class="still-filled" d="m279.62,722.01h1.55v6.14h.86c1.44,0,2.52-.07,3.72-.36l.08,1.28c-1.38.41-2.94.44-4.57.44h-1.64v-7.51Zm7.66,4.82h-3.24v-1.34h3.24v-1.08h-3.24v-1.34h3.24v-1.71h1.56v10.77h-1.56v-5.29Z"/><path class="still-filled" d="m290.5,722.12h2.5v-.82h1.56v.82h2.43v1.29h-6.49v-1.29Zm.74,3.83c0-1.27,1.06-2.21,2.58-2.21s2.57.94,2.57,2.21-1.06,2.22-2.57,2.22-2.58-.96-2.58-2.22Zm3.66-.01c0-.59-.41-.95-1.08-.95s-1.09.36-1.09.95.41.98,1.09.98,1.08-.38,1.08-.98Zm-1.18,4.55c0-1.49,1.22-2.48,3.15-2.48s3.15.98,3.15,2.46-1.21,2.45-3.15,2.45-3.15-.96-3.15-2.42Zm4.75-.02c0-.7-.55-1.14-1.6-1.14s-1.59.43-1.59,1.14.55,1.13,1.59,1.13,1.6-.43,1.6-1.13Zm.04-9.1h1.56v2.59h1.54v1.38h-1.54v2.57h-1.56v-6.54Z"/><path class="still-filled" d="m302.18,726.74l2.09-2.52v-.92h-1.92v-1.28h5.35v1.28h-1.92v.92l2.1,2.52-1.09.92-1.75-2.08h-.02l-1.74,2.08-1.09-.92Zm3.78,3.68c0-1.51,1.22-2.54,3.33-2.54s3.33,1.01,3.33,2.53-1.21,2.49-3.33,2.49-3.33-.98-3.33-2.48Zm5.11-.02c0-.73-.55-1.2-1.78-1.2s-1.77.46-1.77,1.2.55,1.19,1.77,1.19,1.78-.46,1.78-1.19Zm-2.41-8.91h1.49v2.36h1.14v-2.49h1.51v6.46h-1.51v-2.66h-1.14v2.3h-1.49v-5.97Z"/><path class="still-filled" d="m324.83,729.67v1.38h-10.42v-1.38h10.42Zm-8.9-4.69c0-1.73,1.45-3.09,3.68-3.09s3.68,1.37,3.68,3.09-1.44,3.11-3.68,3.11-3.68-1.37-3.68-3.11Zm5.8,0c0-1.03-.73-1.71-2.12-1.71s-2.12.68-2.12,1.71.73,1.73,2.12,1.73,2.12-.71,2.12-1.73Z"/><path class="still-filled" d="m330.81,729.73v-1.69h-3.41v-3.67h6.52v-1.12h-6.52v-1.28h8.04v3.67h-6.52v1.12h6.69v1.28h-3.24v1.69h4.22v1.38h-10.42v-1.38h4.64Z"/><path class="still-filled" d="m351.23,727.96v1.38h-4.31v3.17h-1.56v-3.17h-4.56v-1.38h10.42Zm-1.51-4.82h-5.77v.71h5.46v1.26h-5.46v.72h5.85v1.27h-7.39v-5.23h7.3v1.27Z"/><path class="still-filled" d="m357,726.68v-.68c-1.56-.2-2.52-1.01-2.52-2.27,0-1.45,1.3-2.3,3.33-2.3s3.35.85,3.35,2.3c0,1.28-.98,2.09-2.6,2.28v.67h4.43v1.38h-10.42v-1.38h4.44Zm3.05,3.49h-6.09v-1.34h7.64v3.99h-1.55v-2.65Zm-.46-6.44c0-.64-.59-.96-1.77-.96s-1.78.32-1.78.96.59.98,1.78.98,1.77-.36,1.77-.98Z"/><path class="still-filled" d="m364.24,727.35h3.06v-1.19h-2.29v-4.28h5.92v1.34h-4.4v1.59h4.52v1.34h-2.22v1.19h.23c.83,0,1.92-.06,2.72-.23l.16,1.27c-1.14.29-2.39.3-3.37.3h-4.17l-.16-1.34Zm2.49,1.94h1.55v2h6.02v1.34h-7.57v-3.35Zm5.76-7.94h1.56v8.55h-1.56v-8.55Z"/><path class="still-filled" d="m378.51,722.71h2.24v-1.21h1.51v1.21h2.04v1.31h-5.79v-1.31Zm.43,4.39c0-1.54,1.03-2.53,2.6-2.53s2.6,1,2.6,2.53-1.04,2.53-2.6,2.53-2.6-1-2.6-2.53Zm3.72-.01c0-.8-.41-1.26-1.12-1.26s-1.12.46-1.12,1.26.42,1.28,1.12,1.28,1.12-.47,1.12-1.28Zm2.31-5.6h1.49v3.63h1.14v-3.77h1.51v10.77h-1.51v-5.7h-1.14v5.45h-1.49v-10.39Z"/><path class="still-filled" d="m391.22,722.01h1.55v6.14h.86c1.44,0,2.52-.07,3.72-.36l.08,1.28c-1.38.41-2.94.44-4.57.44h-1.64v-7.51Zm7.66,4.82h-3.24v-1.34h3.24v-1.08h-3.24v-1.34h3.24v-1.71h1.56v10.77h-1.56v-5.29Z"/><path class="still-filled" d="m403.96,726.93c0-2.18-.49-3.92-1.78-5.71h1.44c1.12,1.26,1.74,3.43,1.74,5.71s-.62,4.43-1.74,5.69h-1.44c1.27-1.79,1.78-3.53,1.78-5.69Z"/>
         </svg>
         
@@ -94,7 +263,7 @@
       const resetButton = document.getElementById('reset-button');
       const saveButton = document.getElementById('save-button');
 
-      let selectedColor = '#A4BBEA'; 
+      let selectedColor = '#f3f2ea'; 
       
               
       // 컬러 팔레트의 스와치를 클릭하면 해당 색상을 선택한 색상으로 설정합니다.
@@ -194,7 +363,7 @@
       
       
       
-
+/*
       saveButton.addEventListener('click', () => {
           const canvas = document.createElement('canvas');
           const context = canvas.getContext('2d');
@@ -223,6 +392,41 @@ downloadLink.click();
   image.src = 'data:image/svg+xml;base64,' + btoa(svgData);
 });
       
+      */
+      
+saveButton.addEventListener('click', () => {
+          const canvas = document.createElement('canvas');
+          const context = canvas.getContext('2d');
+          const svgData = new XMLSerializer().serializeToString(svgImage);
+      
+
+// 배경을 투명에서 흰색으로 변환합니다.
+const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+    
+context.putImageData(imageData, 0, 0);
+const image = new Image();
+          image.onload = () => {
+            // 원래 크기의 2배로 설정합니다.
+            canvas.width = image.width * 3;
+            canvas.height = image.height * 3;
+
+            // 안티앨리어싱이 적용되도록 설정합니다.
+            context.imageSmoothingEnabled = true;
+            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+              
+              // JPG 형식으로 이미지를 다운로드합니다.
+const downloadLink = document.createElement('a');
+downloadLink.href = canvas.toDataURL('image/jpeg', 1.0);
+
+downloadLink.download = '컬러링_제주잠녀항쟁.jpg';
+downloadLink.click();
+
+                  };    
+
+  image.src = 'data:image/svg+xml;base64,' + btoa(svgData);
+});
       
       
       
