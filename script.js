@@ -156,7 +156,11 @@ saveButton.addEventListener('click', () => {
 function saveToAlbum(imageData) {
   const anchor = document.createElement('a');
   anchor.href = imageData;
-  anchor.download = '컬러링_제주잠녀항쟁.jpg';
+    
+  // 파일명 설정을 위해 확장자 추출
+  const extension = imageData.substring("data:image/".length, imageData.indexOf(";base64"));
+  const filename = '컬러링_제주잠녀항쟁.' + extension;
+  anchor.download = filename;
   anchor.style.display = 'none';
 
   document.body.appendChild(anchor);
