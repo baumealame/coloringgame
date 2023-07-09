@@ -1,0 +1,174 @@
+.wrapper-coloring {
+  width:Calc(100% - 40px);
+    padding-top:20px;
+   margin:0 auto;
+   position: relative;
+        }
+        
+        
+      #svg-container {
+        position: relative;
+          width:100%;
+          max-width:600px;
+          margin:0px auto;
+          display: block;}
+
+
+#svg-image {margin-bottom:300px}
+        
+   .btn_small {
+    border: 1px solid #7c7067;
+    border-radius: 20px;
+    margin:0;
+    padding: 5px 10px;
+    font-size: 13px;
+    line-height: 13px;
+    display:inline-block;
+    position: relative;
+    background-color:#f3f2ea;
+    font-family: 'Ortankhangeultext', sans-serif;
+    color: #584c43;vertical-align: middle;}
+
+.btn_small img{height:12px;vertical-align: bottom;}
+
+.btn_small:hover {
+    color: #7c7067;
+    border-width: 2px;
+    border-color: #7c7067;
+    padding: 4px 9px
+}
+        
+      .control-panel {padding:10px 0;
+        background-color:rgba(243,242,234,0.7);
+        margin:0;
+        height:auto;
+        position:fixed;
+        bottom:0;left:0;right:0;
+        display:block;
+        z-index: 10;text-align:center;}
+
+    .wrapper_control{
+        margin:0 auto;
+        width:100%;
+        max-width:600px;}
+    .wrapper-btns {position: relative; justify-content: space-between;display: flex;}
+    .editor_btns {}
+
+    #color-palette{margin:0;text-align:center;display: block;position:relative;}
+
+    .wrap-palettel-left {width:66.6%;float:left}
+    .wrap-palettel-right{width:33.3%;float:left}
+
+       .color-swatch {float:left;
+        display:block;width:30px;height:30px;margin:4.98px;
+        border-radius:50%;
+        cursor: pointer;
+        border: 1px solid rgba(88, 76, 67, 0.3);
+        box-sizing:border-box;
+      }
+        
+       .color-swatch:hover {
+            border: 1px solid rgba(88, 76, 67, 1);
+        }    
+
+
+
+
+        
+        
+      #color-picker {
+        position: relative;
+      }
+        
+      /* 컬러 피커 스타일 수정 */   
+        input[type="color"] {
+          /* 원하는 스타일 속성을 추가/수정 */
+          width:30px;height:30px;
+          margin:5px;
+          border-radius:20px;padding:0;
+          border: 1px solid rgba(88, 76, 67, 0.5);
+          cursor: pointer;
+            display: inline-block;vertical-align: middle;
+        }
+        
+        input[type="color"]:hover {border:1px solid rgba(88, 76, 67, 1)}
+
+
+
+        input[type="color"]::-webkit-color-swatch-wrapper {
+          padding: 0;
+        }
+
+        input[type="color"]::-webkit-color-swatch {
+          border: none;
+          border-radius: 20px
+        }
+
+        input[type="color"]::-moz-color-swatch {
+          border: none;
+          border-radius:20px;
+        }
+
+        input[type="color"]::-moz-focus-inner {
+          border: 0;
+        }
+
+        
+        input[type="color"]::before {
+            content: "＋";
+    color: RGBa(88, 76, 67, 0.7);
+    margin-left: 0px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 28px;
+    font-family: 'Ortankhangeultext';}      
+        
+  
+
+
+
+    
+
+      #reset-button {
+        position: relative;
+      }
+
+      #save-button {
+        position: relative;
+      }
+
+
+
+
+
+
+
+@media screen and (max-width: 1000px) {
+    
+    
+}
+
+
+
+
+@media screen and (max-width: 640px) {
+    .control-panel{left:3vw;right:3vw;}
+    .color-swatch {float:none;display:inline-block;width:4.8vw;height:4.8vw;margin:0.35vw;}
+    input[type="color"] {width:4.8vw;height:4.8vw;margin:0.0.35vw;}
+    input[type="color"]::before {font-size: 4.8vw;line-height: 4.6vw;}     
+    .wrapper-btns{margin:0 0 3px 0;}
+}
+
+
+@media screen and (max-width: 458px) {
+    
+        .wrap-palettel-left {width:100%;float:left}
+    .wrap-palettel-right{width:100%;float:left}
+    
+    .color-swatch {width:7.2vw;height:7.2vw;margin:0.5vw;}
+    input[type="color"] {width:7.2vw;height:7.2vw;margin:0.5vw;}
+    input[type="color"]::before {font-size:7.2vw;line-height:7vw;}   
+}

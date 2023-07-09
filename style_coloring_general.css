@@ -1,0 +1,40 @@
+
+.wrapper_game {
+    position:relative;
+    text-align: center;
+    min-height: 600px;
+    height:auto;
+    display:block;
+    margin-bottom: auto;
+    top:100px;
+}
+
+
+
+.tutorial {margin-top:20px;font-size:16px;text-align: center;line-height:27px;}
+
+.wrap_coloing_list{
+    max-width:900px;
+    margin:40px auto;
+    display: block;
+    position:relative;top:0;
+    left:0;right:0;
+    height:auto;}
+
+.list-container {
+  margin:8px;width:180px;height:auto;position:relative;display: inline-block;}
+
+
+.list-container .list_thumbnail {display: block;position: relative;width: 100%;margin-bottom:5px;}
+.list-container img{display: block;position: relative;width: 100%;}
+.list-container .name {font-size:16px;line-height:24px;margin:0;}
+.list-container .desc {font-size:13px;line-height:20px;margin:0;}
+
+
+.list01:hover {background-color:#000}
+
+
+
+@media screen and (max-width: 768px) {  
+    .tutorial{margin-top:40px;}
+}
