@@ -117,41 +117,52 @@
       
       
 saveButton.addEventListener('click', () => {
-          const canvas = document.createElement('canvas');
-          const context = canvas.getContext('2d');
-          const svgData = new XMLSerializer().serializeToString(svgImage);
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  const svgData = new XMLSerializer().serializeToString(svgImage);
 
-const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+  const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 
-context.putImageData(imageData, 0, 0);
-const image = new Image();
-          image.onload = () => {
-            canvas.width = image.width * 3;
-            canvas.height = image.height * 3;
-            context.imageSmoothingEnabled = true;
-            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+  context.putImageData(imageData, 0, 0);
+  const image = new Image();
+  image.onload = () => {
+    canvas.width = image.width * 3;
+    canvas.height = image.height * 3;
+    context.imageSmoothingEnabled = true;
+    context.drawImage(image, 0, 0, canvas.width, canvas.height);
 
-              
-const downloadLink = document.createElement('a');
-downloadLink.href = canvas.toDataURL('image/jpeg', 1.0);
+    const downloadLink = document.createElement('a');
+    downloadLink.href = canvas.toDataURL('image/jpeg', 1.0);
 
-if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-  // 모바일 기기에서 접근한 경우
-  downloadLink.addEventListener('click', () => {
-    // 이미지를 사진 앨범에 저장하는 함수 호출
-    saveToAlbum(canvas.toDataURL('image/jpeg', 1.0));
-  });
-} else {
-  // 모바일 기기가 아닌 경우
-  downloadLink.download = '컬러링_제주잠녀항쟁.jpg';
-}
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      // 모바일 기기에서 접근한 경우
+      downloadLink.addEventListener('click', () => {
+        // 이미지를 사진 앨범에 저장하는 함수 호출
+        saveToAlbum(canvas.toDataURL('image/jpeg', 1.0));
+      });
+    } else {
+      // 모바일 기기가 아닌 경우
+      downloadLink.download = '컬러링_제주잠녀항쟁.jpg';
+      downloadLink.click();
+    }
 
-downloadLink.click();
-
-                  };    
+    document.body.appendChild(downloadLink);
+  };
 
   image.src = 'data:image/svg+xml;base64,' + btoa(svgData);
 });
+
+// 사진 앨범에 이미지를 저장하는 함수
+function saveToAlbum(imageData) {
+  const anchor = document.createElement('a');
+  anchor.href = imageData;
+  anchor.download = '컬러링_제주잠녀항쟁.jpg';
+  anchor.style.display = 'none';
+
+  document.body.appendChild(anchor);
+  anchor.click();
+  document.body.removeChild(anchor);
+}
 
 
 
