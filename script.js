@@ -9,7 +9,6 @@
 });
       
       
-      
       const svgImage = document.getElementById('svg-image');
       const colorPicker = document.getElementById('color-picker');
       const colorSwatches = document.querySelectorAll('.color-swatch');
@@ -27,7 +26,6 @@
       });
       
 
-      
       colorPicker.addEventListener('change', (event) => {
         selectedColor = event.target.value;
       });
@@ -43,9 +41,7 @@
            targetTagName === 'polygon' ||
             targetTagName === 'line' ||
             targetTagName === 'circle') &&
-          targetClassList.contains('fill-block');
-
-        
+          targetClassList.contains('fill-block');     
           
         if (isFillBlockElement) {
           event.target.setAttribute('fill', selectedColor);
@@ -111,68 +107,37 @@
       });
       
       
-      
-      
-      
-      
-      
+
+
 saveButton.addEventListener('click', () => {
-  const canvas = document.createElement('canvas');
-  const context = canvas.getContext('2d');
-  const svgData = new XMLSerializer().serializeToString(svgImage);
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        const svgData = new XMLSerializer().serializeToString(svgImage);
+        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        context.putImageData(imageData, 0, 0);
 
-  const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        const image = new Image();
+        image.onload = () => {
+        // 원래 크기의 3배로 설정
+        canvas.width = image.width * 3;
+        canvas.height = image.height * 3;
+        // 안티앨리어싱 적용
+        context.imageSmoothingEnabled = true;
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+        // JPG 형식으로 이미지를 다운로드
+        const downloadLink = document.createElement('a');
+        downloadLink.href = canvas.toDataURL('image/jpeg', 1.0);
+        downloadLink.download = '컬러링_제주잠녀항쟁.jpg';
+        downloadLink.click();
+            
+        // 모바일 사진 앨범에 저장
+        if (typeof window.Android !== 'undefined' && typeof window.Android.saveImageToAlbum === 'function') {
+          window.Android.saveImageToAlbum(downloadLink.href);
+        }
 
-  context.putImageData(imageData, 0, 0);
-  const image = new Image();
-  image.onload = () => {
-    canvas.width = image.width * 3;
-    canvas.height = image.height * 3;
-    context.imageSmoothingEnabled = true;
-    context.drawImage(image, 0, 0, canvas.width, canvas.height);
+            
+    };    
 
-    const downloadLink = document.createElement('a');
-    downloadLink.href = canvas.toDataURL('image/jpeg', 1.0);
-
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      // 모바일 기기에서 접근한 경우
-      downloadLink.addEventListener('click', () => {
-        // 이미지를 사진 앨범에 저장하는 함수 호출
-        saveToAlbum(canvas.toDataURL('image/jpeg', 1.0));
-      });
-    } else {
-      // 모바일 기기가 아닌 경우
-      downloadLink.download = '컬러링_제주잠녀항쟁.jpg';
-      downloadLink.click();
-    }
-
-    document.body.appendChild(downloadLink);
-  };
-
-  image.src = 'data:image/svg+xml;base64,' + btoa(svgData);
+    image.src = 'data:image/svg+xml;base64,' + btoa(svgData);
 });
-
-// 사진 앨범에 이미지를 저장하는 함수
-function saveToAlbum(imageData) {
-  const anchor = document.createElement('a');
-  anchor.href = imageData;
-    
-  // 파일명 설정을 위해 확장자 추출
-  const extension = imageData.substring("data:image/".length, imageData.indexOf(";base64"));
-  const filename = '컬러링_제주잠녀항쟁.' + extension;
-  anchor.download = filename;
-  anchor.style.display = 'none';
-
-  document.body.appendChild(anchor);
-  anchor.click();
-  document.body.removeChild(anchor);
-}
-
-
-
-
-
-
-
-
-
+     
