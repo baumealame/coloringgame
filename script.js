@@ -124,17 +124,39 @@ saveButton.addEventListener('click', () => {
         // 안티앨리어싱 적용
         context.imageSmoothingEnabled = true;
         context.drawImage(image, 0, 0, canvas.width, canvas.height);
+            
+    // 이미지를 Base64 데이터 URL로 변환
+    const dataURL = canvas.toDataURL('image/jpeg', 1.0);
+
+    // 이미지 다운로드 링크 생성
+    const downloadLink = document.createElement('a');
+    downloadLink.href = dataURL;
+    downloadLink.download = 'coloring.jpg';
+
+    // 사용자에게 이미지 저장 안내
+    if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+      // 아이폰, 아이패드 등에서 실행 중인 경우
+      const confirmation = confirm('이미지를 저장하시겠습니까?');
+      if (confirmation) {
+        window.open(dataURL, '_blank');
+      }
+    } else {
+      // 다른 모바일 기기에서 실행 중인 경우
+      downloadLink.click();
+    }
+            
+    /*        
         // JPG 형식으로 이미지를 다운로드
         const downloadLink = document.createElement('a');
         downloadLink.href = canvas.toDataURL('image/jpeg', 1.0);
-        downloadLink.download = '컬러링_제주잠녀항쟁.jpg';
+        downloadLink.download = 'coloring.jpg';
         downloadLink.click();
             
         // 모바일 사진 앨범에 저장
         if (typeof window.Android !== 'undefined' && typeof window.Android.saveImageToAlbum === 'function') {
           window.Android.saveImageToAlbum(downloadLink.href);
         }
-
+*/
             
     };    
 
