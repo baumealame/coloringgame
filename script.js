@@ -135,15 +135,16 @@ saveButton.addEventListener('click', () => {
 
     // 사용자에게 이미지 저장 안내
     if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
-      // 아이폰, 아이패드 등에서 실행 중인 경우
-      const confirmation = confirm('이미지를 저장하시겠습니까?');
-      if (confirmation) {
-        window.open(dataURL, '_blank');
-      }
+      // 이미지를 새 창으로 열기
+        const newWindow = window.open();
+        newWindow.document.write('<img src="' + dataURL + '" alt="컬러링_제주잠녀항쟁" />');
     } else {
       // 다른 모바일 기기에서 실행 중인 경우
       downloadLink.click();
     }
+
+            
+            
             
     /*        
         // JPG 형식으로 이미지를 다운로드
