@@ -17,7 +17,7 @@
    .btn_small {
     border: 1px solid rgba(88, 76, 67, 0.5);
     border-radius: 20px;
-    margin:5px 2px;
+    margin:5px 0px;
     padding: 0px 10px;
     font-size: 12px;
     line-height: 28px;
@@ -30,10 +30,8 @@
     box-sizing:border-box;}
 
 .btn_small img{height:12px;vertical-align: middle;padding:0 2px 2px 0;}
-
-.btn_small:hover {
-    background-color:rgba(255,255,255,0.5);
-}
+.btn_back img{transform: rotate(90deg);padding:2px 2px 0 0;}
+.btn_small:hover {background-color:rgba(255,255,255,0.5);}
         
       .control-panel {padding:10px 0;
         background-color:rgba(243,242,234,0.7);
@@ -66,10 +64,6 @@
        .color-swatch:hover {
             border: 1px solid rgba(88, 76, 67, 1);}    
 
-
-
-
-        
         
       #color-picker {
         position: relative;
@@ -141,13 +135,6 @@
 
 
 
-@media screen and (max-width: 1000px) {
-    
-    
-}
-
-
-
 
 @media screen and (max-width: 630px) {
     .control-panel{left:2vw;right:2vw;}
@@ -156,12 +143,12 @@
     .color-swatch {width:5vw;height:5vw;margin:0.7vw;}
     input[type="color"] {width:5vw;height:5vw;margin:0.7vw;}
     input[type="color"]::before {font-size: 5vw;line-height:calc(5vw - 1px);}   
-    .btn_small {height:5vw;margin:0.7vw 1px;padding: 0 2vw;font-size: 2vw;line-height:calc(5vw - 1px)}
+    .btn_small {height:5vw;margin:0.7vw 0px;padding: 0 2vw;font-size: 2vw;line-height:calc(5vw - 1px)}
     .btn_small img{height:2vw;}
 }
 
 
-@media screen and (max-width: 458px) {
+@media screen and (max-width: 376px) {
     
     .wrap-palettel-left {width:100%;}
     .wrap-palettel-right{width:100%;}
@@ -169,6 +156,6 @@
     .color-swatch {width:7.4vw;height:7.4vw;margin:1vw;}
     input[type="color"] {width:7.4vw;height:7.4vw;margin:1vw;}
     input[type="color"]::before {font-size:7.4vw;line-height:calc(7.4vw - 1px);}   
-    .btn_small {height:7.4vw;margin:1vw 1px;padding: 0 2vw;font-size: 12px;line-height:calc(7.4vw - 1px)}
+    .btn_small {height:7.4vw;margin:1vw 0px;padding: 0 2vw;font-size: 12px;line-height:calc(7.4vw - 1px)}
     .btn_small img{height:12px;}
 }
