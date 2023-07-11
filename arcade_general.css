@@ -51,7 +51,8 @@ border-bottom:1px solid #584c43;z-index: 10;text-align: center;}
 .footer{display:block;width:100%;
     max-width:400px;
     margin:0 auto;
-    text-align:center;}
+    text-align:center;
+    z-index: 10;}
 .wrap_footer_btns {padding:10px 20px;}
 
 .link-to-copy {font-size:0;line-height:0;}

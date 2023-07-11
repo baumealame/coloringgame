@@ -1,15 +1,12 @@
-
 .wrapper_game {
     position:relative;
     text-align: center;
     min-height: 600px;
     height:auto;
     display:block;
-    margin-bottom: auto;
-    top:100px;
+    margin-bottom:60px;
+    margin-top:100px;
 }
-
-
 
 .tutorial {margin-top:20px;font-size:16px;text-align: center;line-height:27px;}
 
@@ -22,19 +19,31 @@
     height:auto;}
 
 .list-container {
-  margin:8px;width:180px;height:auto;position:relative;display: inline-block;}
+  margin:20px 7.5px;width:auto;height: auto; position:relative;display: inline-block;}
 
+.list_thumbnail {display: block;position: relative;width: 280px;height:280px;border:1px solid #584c43;border-radius:20px;overflow: hidden;margin-bottom:6px;background-repeat: no-repeat;background-position: center;background-size: 100%;}
+.list_thumbnail:hover{background-size:108%;transition-duration: 0.4s;
+    transition-timing-function: ease-out;}
 
-.list-container .list_thumbnail {display: block;position: relative;width: 100%;margin-bottom:5px;}
 .list-container img{display: block;position: relative;width: 100%;}
-.list-container .name {font-size:16px;line-height:24px;margin:0;}
+.list-container .name {font-size:16px;line-height:27px;margin:0;}
 .list-container .desc {font-size:13px;line-height:20px;margin:0;}
 
+.list01 {background-image: url(img/thm_01.png);}
+.list02 {background-image: url(img/thm_02.png);}
+.list03 {background-image: url(img/thm_03.png);}
+.list04 {background-image: url(img/thm_04.png);}
+.list05 {background-image: url(img/thm_05.png);}
+.list06 {background-image: url(img/thm_06.png);}
+.list07 {background-image: url(img/thm_07.png);}
+.list08 {background-image: url(img/thm_08.png);}
+.list09 {background-image: url(img/thm_09.png);}
 
-.list01:hover {background-color:#000}
+a{text-decoration: none;color:#584c43}
 
 
-
-@media screen and (max-width: 768px) {  
-    .tutorial{margin-top:40px;}
+@media screen and (max-width: 900px) {  
+    .wrapper_game{padding:0 2vw;}
+    .list-container{margin:20px 1.5vw;}
+    .list_thumbnail {width:43vw;height:43vw;}
 }
