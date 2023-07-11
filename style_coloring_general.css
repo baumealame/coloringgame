@@ -44,6 +44,6 @@ a{text-decoration: none;color:#584c43}
 
 @media screen and (max-width: 900px) {  
     .wrapper_game{padding:0 2vw;}
-    .list-container{margin:20px 1.5vw;}
+    .list-container{margin:20px 1vw;}
     .list_thumbnail {width:43vw;height:43vw;}
 }
