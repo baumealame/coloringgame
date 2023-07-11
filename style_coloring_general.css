@@ -21,7 +21,7 @@
 .list-container {
   margin:20px 7.5px;width:auto;height: auto; position:relative;display: inline-block;}
 
-.list_thumbnail {display: block;position: relative;width: 280px;height:280px;border:1px solid #584c43;border-radius:20px;overflow: hidden;margin-bottom:6px;background-repeat: no-repeat;background-position: center;background-size: 100%;}
+.list_thumbnail {display: block;position: relative;width: 280px;height:280px;border:1px solid #7c7067;border-radius:20px;overflow: hidden;margin-bottom:6px;background-repeat: no-repeat;background-position: center;background-size: 100%;}
 .list_thumbnail:hover{background-size:108%;transition-duration: 0.4s;
     transition-timing-function: ease-out;}
 
